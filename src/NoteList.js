@@ -1,11 +1,25 @@
 import Note from "./Note";
+import Button from "./Button";
 
-export default function NoteList({ notes }) {
+export default function NoteList({
+  notes,
+  onSelectedNote,
+  selectedNote,
+  onAddNote,
+}) {
   return (
-    <ul className="noteList">
-      {notes.map((note) => (
-        <Note note={note} key={note.title} />
-      ))}
-    </ul>
+    <div className="notes">
+      <ul className="noteList">
+        {notes.map((note) => (
+          <Note
+            note={note}
+            key={note.title}
+            onSelectedNote={onSelectedNote}
+            selectedNote={selectedNote}
+          />
+        ))}
+      </ul>
+      <Button onClick={onAddNote}>Add note</Button>
+    </div>
   );
 }

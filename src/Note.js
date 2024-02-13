@@ -1,6 +1,11 @@
-export default function Note({ note }) {
+export default function Note({ note, onSelectedNote, selectedNote }) {
+  const isSelected = note.id === selectedNote?.id;
+
   return (
-    <li className="noteList__item">
+    <li
+      className={isSelected ? "noteList__item selected" : "noteList__item"}
+      onClick={() => onSelectedNote(note)}
+    >
       <h3>
         <span className={`dot ${note.color}`}></span>
         {note.title}

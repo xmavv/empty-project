@@ -1,4 +1,5 @@
 :root {
+  --color-primary: #178ed3;
   --red: rgb(232, 83, 83);
   --blue: rgb(40, 92, 187);
   --green: rgb(18, 142, 57);
@@ -83,8 +84,11 @@ body {
   cursor: pointer;
 }
 
-.noteList__item:hover {
-  background-color: rgb(148, 235, 255);
+.noteList__item:hover,
+.noteList__item.selected {
+  -webkit-box-shadow: 14px 15px 14px -16px var(--color-primary);
+  -moz-box-shadow: 14px 15px 14px -16px var(--color-primary);
+  box-shadow: 14px 15px 14px -16px var(--color-primary);
 }
 
 .noteInput {
@@ -109,9 +113,9 @@ body {
 }
 
 .noteInput:hover {
-  -webkit-box-shadow: 8px 15px 52px -33px rgba(23, 142, 211, 1);
-  -moz-box-shadow: 8px 15px 52px -33px rgba(23, 142, 211, 1);
-  box-shadow: 8px 15px 52px -33px rgba(23, 142, 211, 1);
+  -webkit-box-shadow: 8px 15px 52px -33px var(--color-primary);
+  -moz-box-shadow: 8px 15px 52px -33px var(--color-primary);
+  box-shadow: 8px 15px 52px -33px var(--color-primary);
 }
 
 .noteInput__title {
@@ -121,6 +125,7 @@ body {
   background-color: transparent;
   border: none;
   outline: none;
+  width: 93%;
 }
 
 .noteInput__body {
@@ -129,4 +134,20 @@ body {
   padding: 2rem 1rem;
   outline: none;
   border: none;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 1.3rem;
+  padding: 1rem;
+  color: var(--color-primary);
+  border: none;
+  outline: none;
+  align-self: end;
+  margin-top: 2rem;
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
 }
