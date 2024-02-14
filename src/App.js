@@ -2,7 +2,7 @@ import NoteList from "./NoteList";
 import NoteInput from "./NoteInput";
 import { useState } from "react";
 
-const notes = [
+const notesArr = [
   {
     id: 1,
     title: "ja jestem mega szefem i robie se treninng nie",
@@ -39,15 +39,28 @@ const notes = [
 export default function App() {
   const [selectedNote, setSelectedNote] = useState(null);
   const [showAddNote, setShowAddNote] = useState(false);
+  const [notes, setNotes] = useState(notesArr);
+  const [titleFromInput, setTitleFromInput] = useState("");
+  const [descriptionFromInput, setDescriptionFromInput] = useState("");
+  const [color, setColor] = useState("undefined");
 
   function handleSelectedNote(note) {
     setSelectedNote(note);
     setShowAddNote(false);
+    setTitleFromInput(note.title);
+    setDescriptionFromInput(note.description);
   }
 
   function handleAddNote() {
     setShowAddNote(true);
     setSelectedNote(null);
+    setTitleFromInput("");
+    setDescriptionFromInput("");
+    setColor("undefined");
+  }
+
+  function handleAddNoteToList(note) {
+    setNotes((notes) => [...notes, note]);
   }
 
   return (
@@ -60,7 +73,17 @@ export default function App() {
           onAddNote={handleAddNote}
           selectedNote={selectedNote}
         />
-        <NoteInput selectedNote={selectedNote} showAddNote={showAddNote} />
+        <NoteInput
+          selectedNote={selectedNote}
+          showAddNote={showAddNote}
+          titleFromInput={titleFromInput}
+          descriptionFromInput={descriptionFromInput}
+          setTitleFromInput={setTitleFromInput}
+          setDescriptionFromInput={setDescriptionFromInput}
+          handleAddNoteToList={handleAddNoteToList}
+          color={color}
+          setColor={setColor}
+        />
       </div>
     </div>
   );

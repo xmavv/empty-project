@@ -66,8 +66,8 @@ body {
 .dot.blue {
   background-color: var(--blue);
 }
-
-.noteList {
+.dot.undefined {
+  background-color: grey;
 }
 
 .noteList__item {
@@ -143,11 +143,17 @@ body {
   color: var(--color-primary);
   border: none;
   outline: none;
-  align-self: end;
   margin-top: 2rem;
+}
+
+.btn.absolute {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
 }
 
 .notes {
   display: flex;
   flex-direction: column;
+  align-items: end;
 }
