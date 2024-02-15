@@ -9,10 +9,11 @@ export default function NoteInput({
   setTitleFromInput,
   setDescriptionFromInput,
   handleAddNoteToList,
+  handleUpdateNote,
   color,
   setColor,
 }) {
-  function handleSubmit(e) {
+  function handleNewNoteSubmit(e) {
     e.preventDefault();
 
     if (!titleFromInput) return;
@@ -25,6 +26,12 @@ export default function NoteInput({
     };
 
     handleAddNoteToList(newNote);
+  }
+
+  function handleEditNoteSubmit(e) {
+    e.preventDefault();
+
+    handleUpdateNote(selectedNote);
   }
 
   function changeColor(color) {
@@ -66,15 +73,18 @@ export default function NoteInput({
       ></textarea>
       {(showAddNote || selectedNote) && (
         <span
-          className={`dot ${
-            selectedNote ? selectedNote?.color : color
-          } absolute`}
+          className={`dot ${color} absolute`}
           onClick={() => changeColor(color)}
         ></span>
       )}
       {showAddNote && (
-        <Button absolute={"absolute"} onClick={handleSubmit}>
+        <Button absolute={"absolute"} onClick={handleNewNoteSubmit}>
           OK
+        </Button>
+      )}
+      {selectedNote && (
+        <Button absolute={"absolute"} onClick={handleEditNoteSubmit}>
+          EDIT
         </Button>
       )}
     </form>

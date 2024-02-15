@@ -6,7 +6,7 @@ export default function Note({ note, onSelectedNote, selectedNote }) {
       className={isSelected ? "noteList__item selected" : "noteList__item"}
       onClick={() => onSelectedNote(note)}
     >
-      <h3>
+      <h3 className="heading-tertiary">
         <span className={`dot ${note.color}`}></span>
         {note.title}
       </h3>

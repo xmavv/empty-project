@@ -49,6 +49,7 @@ export default function App() {
     setShowAddNote(false);
     setTitleFromInput(note.title);
     setDescriptionFromInput(note.description);
+    setColor(note.color);
   }
 
   function handleAddNote() {
@@ -61,6 +62,24 @@ export default function App() {
 
   function handleAddNoteToList(note) {
     setNotes((notes) => [...notes, note]);
+
+    setShowAddNote(false);
+    setSelectedNote(note);
+  }
+
+  function handleUpdateNote(noteToUpdate) {
+    setNotes((notes) =>
+      notes.map((note) =>
+        note.id === noteToUpdate.id
+          ? {
+              ...note,
+              title: titleFromInput,
+              description: descriptionFromInput,
+              color: color,
+            }
+          : note
+      )
+    );
   }
 
   return (
@@ -81,6 +100,7 @@ export default function App() {
           setTitleFromInput={setTitleFromInput}
           setDescriptionFromInput={setDescriptionFromInput}
           handleAddNoteToList={handleAddNoteToList}
+          handleUpdateNote={handleUpdateNote}
           color={color}
           setColor={setColor}
         />
