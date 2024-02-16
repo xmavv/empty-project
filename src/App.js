@@ -39,7 +39,9 @@ const notesArr = [
 export default function App() {
   const [selectedNote, setSelectedNote] = useState(null);
   const [showAddNote, setShowAddNote] = useState(false);
-  const [notes, setNotes] = useState(notesArr);
+  const [notes, setNotes] = useState(
+    JSON.parse(localStorage.getItem("notes")) || []
+  );
   const [titleFromInput, setTitleFromInput] = useState("");
   const [descriptionFromInput, setDescriptionFromInput] = useState("");
   const [color, setColor] = useState("undefined");
@@ -52,7 +54,7 @@ export default function App() {
     setColor(note.color);
   }
 
-  function handleAddNote() {
+  function handleAddNoteButton() {
     setShowAddNote(true);
     setSelectedNote(null);
     setTitleFromInput("");
@@ -62,6 +64,7 @@ export default function App() {
 
   function handleAddNoteToList(note) {
     setNotes((notes) => [...notes, note]);
+    localStorage.setItem("notes", JSON.stringify([...notes, note]));
 
     setShowAddNote(false);
     setSelectedNote(note);
@@ -89,7 +92,7 @@ export default function App() {
         <NoteList
           notes={notes}
           onSelectedNote={handleSelectedNote}
-          onAddNote={handleAddNote}
+          onAddNote={handleAddNoteButton}
           selectedNote={selectedNote}
         />
         <NoteInput
