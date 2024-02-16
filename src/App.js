@@ -135,6 +135,7 @@ export default function App() {
           handleAddNoteToList={handleAddNoteToList}
           handleUpdateNote={handleUpdateNote}
           handleDeleteNote={handleDeleteNote}
+          setShowAddNote={setShowAddNote}
           color={color}
           setColor={setColor}
         />

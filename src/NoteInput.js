@@ -11,6 +11,7 @@ export default function NoteInput({
   handleAddNoteToList,
   handleUpdateNote,
   handleDeleteNote,
+  setShowAddNote,
   color,
   setColor,
 }) {
@@ -61,21 +62,41 @@ export default function NoteInput({
     }
   }
 
-  console.log(showAddNote);
+  function handleEmptyNote(e) {
+    //this function will execute only once if needed (so when selectedNote && showAddNote are both FALSE)
+    // (so at first render of app, and while deleting one of the notes)
+    // when u start typing state showAddNote = true and this function wont be executed again
+    // cause we are in normal showAddNote=true state so as u would click the button
+
+    setShowAddNote(true);
+    e.target.nodeName === "INPUT"
+      ? setTitleFromInput(e.target.value)
+      : setDescriptionFromInput(e.target.value);
+  }
 
   return (
     <form className="noteInput">
       <input
         value={titleFromInput}
-        onChange={(e) => setTitleFromInput(e.target.value)}
+        onChange={(e) =>
+          !selectedNote && !showAddNote // Z PRAW DE MORGANA !a * !b = !(a+b) ==> !(selectedNote || showAddNote) ale tamto jest bardziej zrozumiale :)
+            ? handleEmptyNote(e)
+            : setTitleFromInput(e.target.value)
+        }
         placeholder={
-          showAddNote ? "Type title of your note" : "Add or choose a note"
+          showAddNote
+            ? "Type title of your note"
+            : "Choose a note or start typing to add new note"
         }
         className="noteInput__title"
       ></input>
       <textarea
         value={descriptionFromInput}
-        onChange={(e) => setDescriptionFromInput(e.target.value)}
+        onChange={(e) =>
+          !selectedNote && !showAddNote
+            ? handleEmptyNote(e)
+            : setDescriptionFromInput(e.target.value)
+        }
         contentEditable
         className="noteInput__body"
         placeholder={showAddNote ? "Type description of your note" : ""}
