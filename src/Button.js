@@ -1,6 +1,6 @@
-export default function Button({ children, onClick, absolute }) {
+export default function Button({ children, onClick, absolute, direction }) {
   return (
-    <button className={`btn ${absolute}`} onClick={onClick}>
+    <button className={`btn ${absolute} ${direction}`} onClick={onClick}>
       {children}
     </button>
   );

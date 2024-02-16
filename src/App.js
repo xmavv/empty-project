@@ -70,6 +70,8 @@ export default function App() {
     setSelectedNote(note);
   }
 
+  //really not good to have the same operation 2 times
+
   function handleUpdateNote(noteToUpdate) {
     setNotes((notes) =>
       notes.map((note) =>
@@ -83,6 +85,34 @@ export default function App() {
           : note
       )
     );
+
+    localStorage.setItem(
+      "notes",
+      JSON.stringify(
+        notes.map((note) =>
+          note.id === noteToUpdate.id
+            ? {
+                ...note,
+                title: titleFromInput,
+                description: descriptionFromInput,
+                color: color,
+              }
+            : note
+        )
+      )
+    );
+  }
+
+  function handleDeleteNote(noteToDelete) {
+    setNotes((notes) => notes.filter((note) => note.id !== noteToDelete.id));
+    localStorage.setItem(
+      "notes",
+      JSON.stringify(notes.filter((note) => note.id !== noteToDelete.id))
+    );
+
+    setSelectedNote(null);
+    setTitleFromInput("");
+    setDescriptionFromInput("");
   }
 
   return (
@@ -104,6 +134,7 @@ export default function App() {
           setDescriptionFromInput={setDescriptionFromInput}
           handleAddNoteToList={handleAddNoteToList}
           handleUpdateNote={handleUpdateNote}
+          handleDeleteNote={handleDeleteNote}
           color={color}
           setColor={setColor}
         />

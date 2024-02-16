@@ -159,8 +159,16 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
 .btn.absolute {
   position: absolute;
+}
+
+.btn.absolute.right {
   bottom: 5%;
   right: 5%;
+}
+
+.btn.absolute.left {
+  bottom: 5%;
+  left: 5%;
 }
 
 .notes {

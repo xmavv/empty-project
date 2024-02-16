@@ -10,6 +10,7 @@ export default function NoteInput({
   setDescriptionFromInput,
   handleAddNoteToList,
   handleUpdateNote,
+  handleDeleteNote,
   color,
   setColor,
 }) {
@@ -34,6 +35,12 @@ export default function NoteInput({
     handleUpdateNote(selectedNote);
   }
 
+  function handleDeleteNoteSubmit(e) {
+    e.preventDefault();
+
+    handleDeleteNote(selectedNote);
+  }
+
   function changeColor(color) {
     switch (color) {
       case "undefined":
@@ -53,6 +60,8 @@ export default function NoteInput({
         break;
     }
   }
+
+  console.log(showAddNote);
 
   return (
     <form className="noteInput">
@@ -78,14 +87,31 @@ export default function NoteInput({
         ></span>
       )}
       {showAddNote && (
-        <Button absolute={"absolute"} onClick={handleNewNoteSubmit}>
-          OK
+        <Button
+          absolute={"absolute"}
+          direction={"right"}
+          onClick={handleNewNoteSubmit}
+        >
+          ADD
         </Button>
       )}
       {selectedNote && (
-        <Button absolute={"absolute"} onClick={handleEditNoteSubmit}>
-          EDIT
-        </Button>
+        <>
+          <Button
+            absolute={"absolute"}
+            direction={"right"}
+            onClick={handleEditNoteSubmit}
+          >
+            EDIT
+          </Button>
+          <Button
+            absolute={"absolute"}
+            direction={"left"}
+            onClick={handleDeleteNoteSubmit}
+          >
+            DELETE
+          </Button>
+        </>
       )}
     </form>
   );
