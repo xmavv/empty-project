@@ -176,3 +176,25 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   flex-direction: column;
   align-items: end;
 }
+
+.placeholderContainer {
+  position: absolute;
+  bottom: 1%;
+  left: 1%;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.placeholderContainer div {
+  display: flex;
+  align-items: center;
+}
+
+.placeholder__item {
+  padding: 1rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}

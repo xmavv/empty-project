@@ -45,6 +45,15 @@ export default function App() {
   const [titleFromInput, setTitleFromInput] = useState("");
   const [descriptionFromInput, setDescriptionFromInput] = useState("");
   const [color, setColor] = useState("undefined");
+  const [redDotPlaceholder, setRedDotPlaceholder] = useState(
+    localStorage.getItem("dot-red") || ""
+  );
+  const [greenDotPlaceholder, setGreenDotPlaceholder] = useState(
+    localStorage.getItem("dot-green") || ""
+  );
+  const [blueDotPlaceholder, setBlueDotPlaceholder] = useState(
+    localStorage.getItem("dot-blue") || ""
+  );
 
   function handleSelectedNote(note) {
     setSelectedNote(note);
@@ -115,6 +124,18 @@ export default function App() {
     setDescriptionFromInput("");
   }
 
+  function handleDotPlaceholderChange(e) {
+    const color = e.target.dataset.color;
+
+    color === "red"
+      ? setRedDotPlaceholder(e.target.value)
+      : color === "green"
+      ? setGreenDotPlaceholder(e.target.value)
+      : setBlueDotPlaceholder(e.target.value);
+
+    localStorage.setItem(`dot-${color}`, e.target.value);
+  }
+
   return (
     <div>
       <h1 className="heading-primary">📝 Your personal notebook</h1>
@@ -139,6 +160,38 @@ export default function App() {
           color={color}
           setColor={setColor}
         />
+      </div>
+      <div className="placeholderContainer">
+        <div>
+          <span className={`dot red`}></span>
+          <input
+            value={redDotPlaceholder}
+            onChange={(e) => handleDotPlaceholderChange(e)}
+            className="placeholder__item"
+            placeholder="Type text for red dot!"
+            data-color="red"
+          ></input>
+        </div>
+        <div>
+          <span className={`dot green`}></span>
+          <input
+            value={greenDotPlaceholder}
+            onChange={(e) => handleDotPlaceholderChange(e)}
+            className="placeholder__item"
+            placeholder="Type text for green dot!"
+            data-color="green"
+          ></input>
+        </div>
+        <div>
+          <span className={`dot blue`}></span>
+          <input
+            value={blueDotPlaceholder}
+            onChange={(e) => handleDotPlaceholderChange(e)}
+            className="placeholder__item"
+            placeholder="Type text for blue dot!"
+            data-color="blue"
+          ></input>
+        </div>
       </div>
     </div>
   );
