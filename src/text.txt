@@ -1,4 +1,3 @@
-legende co oznaczaja poszczegolne kolory kropek
 ladniejszy UI, po lewej stronie taski, i cala reszta to ladny noteInput (i pod noteInput legenda wtedy)
 [to bedzie zrobione tak ze display: grid, po lewej to jakas fixed wartosc a po prawej 1fr cala reszta dostepna]
 
