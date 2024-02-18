@@ -109,7 +109,7 @@ export default function NoteInput({
       )}
       {showAddNote && (
         <Button
-          absolute={"absolute"}
+          position={"absolute"}
           direction={"right"}
           onClick={handleNewNoteSubmit}
         >
