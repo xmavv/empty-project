@@ -1,5 +1,8 @@
-ladniejszy UI, po lewej stronie taski, i cala reszta to ladny noteInput (i pod noteInput legenda wtedy)
-[to bedzie zrobione tak ze display: grid, po lewej to jakas fixed wartosc a po prawej 1fr cala reszta dostepna]
-
 co jest zle zrobione: funkcje ktore dodaja notes do localStorage sa powtarzane i wykonuje sie sekwencja dwa razy,
 przy dodawaniu state i dodawaniu do localStorage to trzeba zmienic!
+
+przy usuwaniu notatki ten komunikat czy chcesz na pewno usunac
+jakies neony na kropkach
+
+span dot powinien byc componentem
+responsive ui
