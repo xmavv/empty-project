@@ -138,7 +138,7 @@ export default function App() {
 
   return (
     <div>
-      <h1 className="heading-primary">📝 Your personal notebook</h1>
+      {/* <h1 className="heading-primary">📝 Your personal notebook</h1> */}
       <div className="container">
         <NoteList
           notes={notes}

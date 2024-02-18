@@ -119,15 +119,15 @@ export default function NoteInput({
       {selectedNote && (
         <>
           <Button
-            absolute={"absolute"}
-            direction={"right"}
+            position="absolute"
+            direction="right"
             onClick={handleEditNoteSubmit}
           >
             EDIT
           </Button>
           <Button
-            absolute={"absolute"}
-            direction={"left"}
+            position="absolute"
+            direction="left"
             onClick={handleDeleteNoteSubmit}
           >
             DELETE

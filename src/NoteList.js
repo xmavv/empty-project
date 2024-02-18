@@ -19,7 +19,9 @@ export default function NoteList({
           />
         ))}
       </ul>
-      <Button onClick={onAddNote}>Add note</Button>
+      <Button onClick={onAddNote} position="relative">
+        Add note
+      </Button>
     </div>
   );
 }
