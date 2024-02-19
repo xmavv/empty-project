@@ -6,3 +6,5 @@ jakies neony na kropkach
 
 span dot powinien byc componentem
 responsive ui
+
+chowanie tej lewej strony w sensie listy i to przez to ze damy width 0 na liste albo kazdy element
