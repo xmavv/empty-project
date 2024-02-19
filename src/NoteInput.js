@@ -1,5 +1,5 @@
-import { useState } from "react";
 import Button from "./Button";
+import Dot from "./Dot";
 
 export default function NoteInput({
   selectedNote,
@@ -42,26 +42,6 @@ export default function NoteInput({
     handleDeleteNote(selectedNote);
   }
 
-  function changeColor(color) {
-    switch (color) {
-      case "undefined":
-        setColor("red");
-        break;
-      case "red":
-        setColor("green");
-        break;
-      case "green":
-        setColor("blue");
-        break;
-      case "blue":
-        setColor("red");
-        break;
-      default:
-        setColor("undefined");
-        break;
-    }
-  }
-
   function handleEmptyNote(e) {
     //this function will execute only once if needed (so when selectedNote && showAddNote are both FALSE)
     // (so at first render of app, and while deleting one of the notes)
@@ -102,10 +82,11 @@ export default function NoteInput({
         placeholder={showAddNote ? "Type description of your note" : ""}
       ></textarea>
       {(showAddNote || selectedNote) && (
-        <span
-          className={`dot ${color} absolute`}
-          onClick={() => changeColor(color)}
-        ></span>
+        <Dot
+          cssClass={`dot ${color} absolute`}
+          setColor={setColor}
+          color={color}
+        />
       )}
       {showAddNote && (
         <Button

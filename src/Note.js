@@ -1,3 +1,5 @@
+import Dot from "./Dot";
+
 export default function Note({ note, onSelectedNote, selectedNote }) {
   const isSelected = note.id === selectedNote?.id;
 
@@ -7,7 +9,7 @@ export default function Note({ note, onSelectedNote, selectedNote }) {
       onClick={() => onSelectedNote(note)}
     >
       <h3 className="heading-tertiary">
-        <span className={`dot ${note.color}`}></span>
+        <Dot cssClass={`dot ${note.color}`} />
         {note.title}
       </h3>
     </li>

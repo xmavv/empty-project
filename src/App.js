@@ -1,5 +1,6 @@
 import NoteList from "./NoteList";
 import NoteInput from "./NoteInput";
+import Dot from "./Dot";
 import { useState } from "react";
 
 const notesArr = [
@@ -138,7 +139,6 @@ export default function App() {
 
   return (
     <div>
-      {/* <h1 className="heading-primary">📝 Your personal notebook</h1> */}
       <div className="container">
         <NoteList
           notes={notes}
@@ -163,7 +163,7 @@ export default function App() {
       </div>
       <div className="placeholderContainer">
         <div>
-          <span className={`dot red`}></span>
+          <Dot cssClass={`dot red`} />
           <input
             value={redDotPlaceholder}
             onChange={(e) => handleDotPlaceholderChange(e)}
@@ -173,7 +173,7 @@ export default function App() {
           ></input>
         </div>
         <div>
-          <span className={`dot green`}></span>
+          <Dot cssClass={`dot green`} />
           <input
             value={greenDotPlaceholder}
             onChange={(e) => handleDotPlaceholderChange(e)}
@@ -183,7 +183,7 @@ export default function App() {
           ></input>
         </div>
         <div>
-          <span className={`dot blue`}></span>
+          <Dot cssClass={`dot blue`} />
           <input
             value={blueDotPlaceholder}
             onChange={(e) => handleDotPlaceholderChange(e)}
