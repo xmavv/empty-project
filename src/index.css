@@ -60,12 +60,15 @@ body {
 
 .dot.red {
   background-color: var(--red);
+  /* box-shadow: 0 0 0.3rem var(--red); */
 }
 .dot.green {
   background-color: var(--green);
+  /* box-shadow: 0 0 0.3rem var(--green); */
 }
 .dot.blue {
   background-color: var(--blue);
+  /* box-shadow: 0 0 0.3rem var(--blue); */
 }
 .dot.undefined {
   background-color: grey;

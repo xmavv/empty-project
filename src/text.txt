@@ -1,10 +1,6 @@
 co jest zle zrobione: funkcje ktore dodaja notes do localStorage sa powtarzane i wykonuje sie sekwencja dwa razy,
 przy dodawaniu state i dodawaniu do localStorage to trzeba zmienic!
 
-przy usuwaniu notatki ten komunikat czy chcesz na pewno usunac
-jakies neony na kropkach
-
-span dot powinien byc componentem
 responsive ui
 
 chowanie tej lewej strony w sensie listy i to przez to ze damy width 0 na liste albo kazdy element
