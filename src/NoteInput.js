@@ -39,7 +39,8 @@ export default function NoteInput({
   function handleDeleteNoteSubmit(e) {
     e.preventDefault();
 
-    handleDeleteNote(selectedNote);
+    const toDlete = window.confirm("Are You sure to delete this note?");
+    if (toDlete) handleDeleteNote(selectedNote);
   }
 
   function handleEmptyNote(e) {
