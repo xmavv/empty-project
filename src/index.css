@@ -190,7 +190,7 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
 .placeholderContainer {
   position: absolute;
-  bottom: 4%;
+  bottom: 1rem;
   right: 1%;
   font-size: 1.2rem;
   margin-top: 2rem;
@@ -208,4 +208,107 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   outline: none;
   border: none;
   background-color: transparent;
+}
+
+.your-notes {
+  display: none;
+
+  font-size: 1.3rem;
+  align-items: center;
+  margin: 0 3rem;
+  cursor: pointer;
+}
+
+.btn--burger ~ span {
+  color: var(--color-primary);
+  margin: 0 1rem;
+}
+
+.btn--burger {
+  padding: 0;
+  background-color: var(--color-primary);
+  height: 2px;
+  width: 2rem;
+  position: relative;
+}
+
+.btn--burger::before,
+.btn--burger::after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-primary);
+  width: 100%;
+  height: 2px;
+  margin: 0.7rem 0;
+  left: 0;
+}
+
+.btn--burger::before {
+  bottom: 0;
+}
+
+.btn--burger::after {
+  top: 0;
+}
+
+/* 1100px */
+@media only screen and (max-width: 68.75em) {
+  .noteList__item {
+    width: 40ch;
+  }
+}
+
+/* 900px */
+@media only screen and (max-width: 56.25em) {
+  html {
+    font-size: 55%;
+  }
+
+  .noteList__item {
+    width: 30ch;
+  }
+}
+
+/* 800px */
+@media only screen and (max-width: 50em) {
+  body {
+    padding: 3rem;
+    padding-bottom: 1rem;
+    align-items: start;
+  }
+
+  .noteList {
+    display: none;
+  }
+
+  .placeholderContainer {
+    left: 2rem;
+    bottom: 2rem;
+    margin: 0;
+    flex-direction: column;
+    z-index: -1;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .notes {
+    grid-row: 2/3;
+  }
+
+  .noteInput {
+    height: 80vh;
+  }
+
+  .your-notes {
+    display: flex;
+  }
+}
+
+/* 500px */
+@media only screen and (max-width: 31.25em) {
+  html {
+    font-size: 45%;
+  }
 }
