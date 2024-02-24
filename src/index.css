@@ -292,6 +292,7 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
   .placeholderContainer {
     flex-direction: column;
+    position: relative;
   }
 
   .container {
@@ -322,7 +323,7 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   }
 
   .placeholderContainer {
-    bottom: 7%;
+    bottom: 0;
     font-size: inherit;
   }
 
