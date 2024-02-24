@@ -277,16 +277,21 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
     align-items: start;
   }
 
+  .notes {
+    align-items: start;
+  }
+
   .noteList {
-    display: none;
+    height: auto;
+    padding: 0;
+  }
+
+  .noteList__item {
+    width: 50vw;
   }
 
   .placeholderContainer {
-    left: 2rem;
-    bottom: 2rem;
-    margin: 0;
     flex-direction: column;
-    z-index: -1;
   }
 
   .container {
@@ -310,5 +315,19 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 @media only screen and (max-width: 31.25em) {
   html {
     font-size: 45%;
+  }
+
+  body {
+    padding: 2rem;
+  }
+
+  .placeholderContainer {
+    bottom: 7%;
+    font-size: inherit;
+  }
+
+  .placeholder__item {
+    font-size: 1.3rem;
+    width: 13rem;
   }
 }

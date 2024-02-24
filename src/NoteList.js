@@ -9,6 +9,7 @@ export default function NoteList({
 }) {
   function handleShowNoteList() {}
   // jak teraz zrobic zeby ta klase zmienic zeby pokazala sie notelista?
+  // jak narazie chyba za ciezko dla mnie bo to klase trzeba zmienic jak sie zmienia state?
 
   return (
     <div className="notes">
@@ -25,10 +26,6 @@ export default function NoteList({
       <Button onClick={onAddNote} position="relative">
         Add note
       </Button>
-      <div className="your-notes" onClick={handleShowNoteList}>
-        <button className="btn btn--burger"></button>
-        <span>Your notes</span>
-      </div>
     </div>
   );
 }
