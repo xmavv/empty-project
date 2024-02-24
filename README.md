@@ -1,4 +1,4 @@
 JUST TO TRAIN MY BASIC REACT SKILLS
 
 DEVELOPMENT
-xmavv-notebook.netlify.app
+https://xmavv-notebook.netlify.app/
