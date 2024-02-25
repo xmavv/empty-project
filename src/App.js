@@ -52,6 +52,7 @@ export default function App() {
 
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   // matches conferts to true or false value
+  // mozna tu tez dac max-width: 600px; i sprawdzac fajne powiazanie z cssem
 
   const [isDark, setIsDark] = useLocalStorage("isDark", preference);
   // so take from localstorage, but if there isnt any put false
