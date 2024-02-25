@@ -6,3 +6,9 @@ responsive ui
 chowanie tej lewej strony w sensie listy i to przez to ze damy width 0 na liste albo kazdy element
 
 dodac do resposive ui no zeby lista sie wyswietla dobrze bo narazie nie wiem jak to zrobic
+
+padding usunales w ktorejs malej wersji listy a wtedy sie buguje text box-shadow to do zmiany
+
+dark mode
+
+uzycie tego uselocalstorage wszedzie
