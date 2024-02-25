@@ -283,11 +283,10 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
   .noteList {
     height: auto;
-    padding: 0;
   }
 
   .noteList__item {
-    width: 50vw;
+    width: 85vw;
   }
 
   .placeholderContainer {
@@ -320,6 +319,10 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
   body {
     padding: 2rem;
+  }
+
+  .noteList {
+    padding-left: 0.5rem;
   }
 
   .placeholderContainer {
