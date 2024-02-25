@@ -1,7 +1,10 @@
 import NoteList from "./NoteList";
 import NoteInput from "./NoteInput";
-import { useState } from "react";
 import PlaceholderContainer from "./PlaceholderContainer";
+import Toggle from "./Toggle";
+
+import { useState } from "react";
+import useLocalStorage from "use-local-storage";
 
 const notesArr = [
   {
@@ -46,6 +49,15 @@ export default function App() {
   const [titleFromInput, setTitleFromInput] = useState("");
   const [descriptionFromInput, setDescriptionFromInput] = useState("");
   const [color, setColor] = useState("undefined");
+
+  const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  // matches conferts to true or false value
+
+  const [isDark, setIsDark] = useLocalStorage("isDark", preference);
+  // so take from localstorage, but if there isnt any put false
+  // ITS SO EZ WITH THIS USELOCALSTORAGE
+
+  // pierwszy raz bierze z systemu, ale ostatecznie bierze to co sobie ustawil na tronie jak pomysli ze to drugie jest jednak lepsze
 
   function handleSelectedNote(note) {
     setSelectedNote(note);
@@ -116,8 +128,18 @@ export default function App() {
     setDescriptionFromInput("");
   }
 
+  function handleThemeChange() {
+    setIsDark((s) => !s);
+
+    // unfortunately i have to do it like this cause when i started i put some style on body and now its getting a little bit awkward when i delete them
+    // really not good React is all about inmutablity and dom traversing and I do this omg
+    document.querySelector("body").style.backgroundColor = isDark
+      ? "#f8f8f8"
+      : "#0a0a0a";
+  }
+
   return (
-    <div>
+    <div className="app" data-theme={isDark ? "dark" : "light"}>
       <div className="container">
         <NoteList
           notes={notes}
@@ -141,6 +163,7 @@ export default function App() {
         />
       </div>
       <PlaceholderContainer />
+      <Toggle isChecked={isDark} onChange={handleThemeChange} />
     </div>
   );
 }

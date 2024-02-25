@@ -1,5 +1,13 @@
 :root {
   --color-primary: #178ed3;
+  --bg-color: #f8f8f8;
+  --fg-color: #fff;
+  --btn-color: #e9e9ed;
+  --btn-color-hover: #e1e1e1;
+  --text-color-primary: #0a0a0a;
+  --toggle-bg: #ffd875;
+  --toggle-fg: #f28e03;
+
   --red: rgb(232, 83, 83);
   --blue: rgb(40, 92, 187);
   --green: rgb(18, 142, 57);
@@ -34,7 +42,16 @@ body {
   align-items: center;
 
   padding: 3rem 5rem 3rem 2rem;
-  background-color: #f8f8f8;
+  background-color: #0a0a0a;
+
+  transition: background-color 250ms ease-in-out;
+}
+
+.app {
+  background-color: var(--bg-color);
+  color: var(--text-color-primary);
+
+  transition: background-color 250ms ease-in-out;
 }
 
 .heading-primary {
@@ -87,7 +104,7 @@ body {
   font-size: 1.2rem;
   padding: 2rem 1rem;
   border-radius: 2rem;
-  transition: all 0.5s ease;
+  transition: box-shadow 0.5s ease;
 
   cursor: pointer;
 }
@@ -112,7 +129,7 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 .noteInput {
   width: 100%;
   height: 85vh;
-  background-color: #ffffff;
+  background-color: var(--fg-color);
   font-size: 2rem;
   border-radius: 2rem;
   overflow: hidden;
@@ -144,6 +161,7 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   border: none;
   outline: none;
   width: 93%;
+  color: var(--text-color-primary);
 }
 
 .noteInput__body {
@@ -152,6 +170,8 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   padding: 2rem 1rem;
   outline: none;
   border: none;
+  background-color: var(--fg-color);
+  color: var(--text-color-primary);
 }
 
 .btn {
@@ -159,8 +179,13 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   font-size: 1.3rem;
   padding: 1rem;
   color: var(--color-primary);
+  background-color: var(--btn-color);
   border: none;
   outline: none;
+}
+
+.btn:hover {
+  background-color: var(--btn-color-hover);
 }
 
 .btn.absolute {
@@ -204,6 +229,7 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 }
 
 .placeholder__item {
+  color: var(--text-color-primary);
   padding: 1rem;
   outline: none;
   border: none;
@@ -249,6 +275,16 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
 .btn--burger::after {
   top: 0;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0a0a0a;
+  --btn-color: #151515;
+  --btn-color-hover: #1f1f1f;
+  --fg-color: #040404;
+  --text-color-primary: #f6f6f6;
+  --toggle-bg: #283452;
+  --toggle-fg: #00a6ff;
 }
 
 /* 1100px */
