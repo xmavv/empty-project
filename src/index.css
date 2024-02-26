@@ -42,7 +42,8 @@ body {
   align-items: center;
 
   padding: 3rem 5rem 3rem 2rem;
-  background-color: #0a0a0a;
+  background-color: #f8f8f8;
+  overflow-y: hidden;
 
   transition: background-color 250ms ease-in-out;
 }
@@ -215,8 +216,8 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
 .placeholderContainer {
   position: absolute;
-  bottom: 1rem;
-  right: 1%;
+  bottom: 0.5rem;
+  right: 7rem;
   font-size: 1.2rem;
   margin-top: 2rem;
   display: flex;
@@ -307,10 +308,15 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
 /* 800px */
 @media only screen and (max-width: 50em) {
+  #root {
+    position: relative;
+  }
+
   body {
     padding: 3rem;
     padding-bottom: 1rem;
     align-items: start;
+    overflow-y: auto;
   }
 
   .notes {
@@ -326,6 +332,8 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   }
 
   .placeholderContainer {
+    bottom: 1rem;
+    right: 1%;
     flex-direction: column;
     position: relative;
   }
@@ -363,11 +371,9 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
   .placeholderContainer {
     bottom: 0;
-    font-size: inherit;
   }
 
   .placeholder__item {
     font-size: 1.3rem;
-    width: 13rem;
   }
 }

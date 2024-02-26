@@ -54,7 +54,7 @@ export default function App() {
   // matches conferts to true or false value
   // mozna tu tez dac max-width: 600px; i sprawdzac fajne powiazanie z cssem
 
-  const [isDark, setIsDark] = useLocalStorage("isDark", preference);
+  const [isDark, setIsDark] = useLocalStorage("isDark", false);
   // so take from localstorage, but if there isnt any put false
   // ITS SO EZ WITH THIS USELOCALSTORAGE
 
