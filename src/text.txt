@@ -1,8 +1,5 @@
-co jest zle zrobione: funkcje ktore dodaja notes do localStorage sa powtarzane i wykonuje sie sekwencja dwa razy,
-przy dodawaniu state i dodawaniu do localStorage to trzeba zmienic!
-
 chowanie tej lewej strony w sensie listy i to przez to ze damy width 0 na liste albo kazdy element
 
-uzycie tego uselocalstorage wszedzie
-
 zmienic ten primary color w zaleznosci od tych kropek do zmiany w ui
+
+ten bgcolor w body jest zle bo za kazdy razem jak sie wchodzi to on jest bialy 
