@@ -1,6 +1,5 @@
 import NoteList from "./NoteList";
 import NoteInput from "./NoteInput";
-import PlaceholderContainer from "./PlaceholderContainer";
 import Toggle from "./Toggle";
 
 import { useState } from "react";
@@ -144,7 +143,6 @@ export default function App() {
           setColor={setColor}
         />
       </div>
-      <PlaceholderContainer />
       <Toggle isChecked={isDark} onChange={handleThemeChange} />
     </div>
   );

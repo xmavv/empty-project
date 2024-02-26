@@ -1,5 +1,6 @@
 import Button from "./Button";
 import Dot from "./Dot";
+import PlaceholderContainer from "./PlaceholderContainer";
 
 export default function NoteInput({
   selectedNote,
@@ -56,66 +57,69 @@ export default function NoteInput({
   }
 
   return (
-    <form className="noteInput">
-      <input
-        value={titleFromInput}
-        onChange={(e) =>
-          !selectedNote && !showAddNote // Z PRAW DE MORGANA !a * !b = !(a+b) ==> !(selectedNote || showAddNote) ale tamto jest bardziej zrozumiale :)
-            ? handleEmptyNote(e)
-            : setTitleFromInput(e.target.value)
-        }
-        placeholder={
-          showAddNote
-            ? "Type title of your note"
-            : "Choose a note or start typing to add new note"
-        }
-        className="noteInput__title"
-      ></input>
-      <textarea
-        value={descriptionFromInput}
-        onChange={(e) =>
-          !selectedNote && !showAddNote
-            ? handleEmptyNote(e)
-            : setDescriptionFromInput(e.target.value)
-        }
-        contentEditable
-        className="noteInput__body"
-        placeholder={showAddNote ? "Type description of your note" : ""}
-      ></textarea>
-      {(showAddNote || selectedNote) && (
-        <Dot
-          cssClass={`dot ${color} absolute`}
-          setColor={setColor}
-          color={color}
-        />
-      )}
-      {showAddNote && (
-        <Button
-          position={"absolute"}
-          direction={"right"}
-          onClick={handleNewNoteSubmit}
-        >
-          ADD
-        </Button>
-      )}
-      {selectedNote && (
-        <>
+    <div>
+      <form className="noteInput">
+        <input
+          value={titleFromInput}
+          onChange={(e) =>
+            !selectedNote && !showAddNote // Z PRAW DE MORGANA !a * !b = !(a+b) ==> !(selectedNote || showAddNote) ale tamto jest bardziej zrozumiale :)
+              ? handleEmptyNote(e)
+              : setTitleFromInput(e.target.value)
+          }
+          placeholder={
+            showAddNote
+              ? "Type title of your note"
+              : "Choose a note or start typing to add new note"
+          }
+          className="noteInput__title"
+        ></input>
+        <textarea
+          value={descriptionFromInput}
+          onChange={(e) =>
+            !selectedNote && !showAddNote
+              ? handleEmptyNote(e)
+              : setDescriptionFromInput(e.target.value)
+          }
+          contentEditable
+          className="noteInput__body"
+          placeholder={showAddNote ? "Type description of your note" : ""}
+        ></textarea>
+        {(showAddNote || selectedNote) && (
+          <Dot
+            cssClass={`dot ${color} absolute`}
+            setColor={setColor}
+            color={color}
+          />
+        )}
+        {showAddNote && (
           <Button
-            position="absolute"
-            direction="right"
-            onClick={handleEditNoteSubmit}
+            position={"absolute"}
+            direction={"right"}
+            onClick={handleNewNoteSubmit}
           >
-            EDIT
+            ADD
           </Button>
-          <Button
-            position="absolute"
-            direction="left"
-            onClick={handleDeleteNoteSubmit}
-          >
-            DELETE
-          </Button>
-        </>
-      )}
-    </form>
+        )}
+        {selectedNote && (
+          <>
+            <Button
+              position="absolute"
+              direction="right"
+              onClick={handleEditNoteSubmit}
+            >
+              EDIT
+            </Button>
+            <Button
+              position="absolute"
+              direction="left"
+              onClick={handleDeleteNoteSubmit}
+            >
+              DELETE
+            </Button>
+          </>
+        )}
+      </form>
+      <PlaceholderContainer />
+    </div>
   );
 }

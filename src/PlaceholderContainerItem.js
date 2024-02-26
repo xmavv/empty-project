@@ -19,7 +19,7 @@ export default function PlaceholderContainerItem({ dotColor }) {
         value={dotPlaceholder}
         onChange={(e) => handleDotPlaceholderChange(e)}
         className="placeholder__item"
-        placeholder={`Type text for ${dotColor} dot!`}
+        placeholder={`Name type for ${dotColor} dot!`}
         data-color={`${dotColor}`}
       ></input>
     </div>
