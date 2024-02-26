@@ -43,9 +43,7 @@ const notesArr = [
 export default function App() {
   const [selectedNote, setSelectedNote] = useState(null);
   const [showAddNote, setShowAddNote] = useState(false);
-  const [notes, setNotes] = useState(
-    JSON.parse(localStorage.getItem("notes")) || []
-  );
+  const [notes, setNotes] = useLocalStorage("notes", []);
   const [titleFromInput, setTitleFromInput] = useState("");
   const [descriptionFromInput, setDescriptionFromInput] = useState("");
   const [color, setColor] = useState("undefined");
@@ -59,6 +57,10 @@ export default function App() {
   // ITS SO EZ WITH THIS USELOCALSTORAGE
 
   // pierwszy raz bierze z systemu, ale ostatecznie bierze to co sobie ustawil na tronie jak pomysli ze to drugie jest jednak lepsze
+
+  document.querySelector("body").style.backgroundColor = isDark
+    ? "#0a0a0a"
+    : "#f8f8f8";
 
   function handleSelectedNote(note) {
     setSelectedNote(note);
@@ -78,7 +80,6 @@ export default function App() {
 
   function handleAddNoteToList(note) {
     setNotes((notes) => [...notes, note]);
-    localStorage.setItem("notes", JSON.stringify([...notes, note]));
 
     setShowAddNote(false);
     setSelectedNote(note);
@@ -99,30 +100,10 @@ export default function App() {
           : note
       )
     );
-
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(
-        notes.map((note) =>
-          note.id === noteToUpdate.id
-            ? {
-                ...note,
-                title: titleFromInput,
-                description: descriptionFromInput,
-                color: color,
-              }
-            : note
-        )
-      )
-    );
   }
 
   function handleDeleteNote(noteToDelete) {
     setNotes((notes) => notes.filter((note) => note.id !== noteToDelete.id));
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(notes.filter((note) => note.id !== noteToDelete.id))
-    );
 
     setSelectedNote(null);
     setTitleFromInput("");
