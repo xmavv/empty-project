@@ -2,4 +2,4 @@ chowanie tej lewej strony w sensie listy i to przez to ze damy width 0 na liste 
 
 zmienic ten primary color w zaleznosci od tych kropek do zmiany w ui
 
-ten bgcolor w body jest zle bo za kazdy razem jak sie wchodzi to on jest bialy 
+wszystko do osobnych cssow, ciezko w sumie teraz bo wsdzystko sie posypie nie wiem gdzie co jest uzywane
