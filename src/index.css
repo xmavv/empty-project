@@ -215,9 +215,8 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 }
 
 .placeholderContainer {
-  position: absolute;
+  position: relative;
   bottom: 0.5rem;
-  right: 7rem;
   font-size: 1.2rem;
   margin-top: 2rem;
   display: flex;
@@ -375,5 +374,17 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
   .placeholder__item {
     font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-height: 50em) {
+  body {
+    overflow-y: auto;
+  }
+}
+
+@media only screen and (max-height: 50em) and (max-width: 75em) {
+  .placeholderContainer {
+    flex-direction: column;
   }
 }
