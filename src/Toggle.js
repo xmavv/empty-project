@@ -11,7 +11,9 @@ export default function Toggle({ isChecked, onChange }) {
         onChange={onChange}
         checked={isChecked}
       />
-      <label htmlFor="check" aria-label="Switch to dark mode"></label>
+      <label htmlFor="check" aria-label="Switch to dark mode">
+        {isChecked ? "LIGHT MODE" : "DARK MODE"}
+      </label>
     </div>
   );
 }
