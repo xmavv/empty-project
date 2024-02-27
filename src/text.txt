@@ -3,3 +3,5 @@ chowanie tej lewej strony w sensie listy i to przez to ze damy width 0 na liste 
 zmienic ten primary color w zaleznosci od tych kropek do zmiany w ui
 
 wszystko do osobnych cssow, ciezko w sumie teraz bo wsdzystko sie posypie nie wiem gdzie co jest uzywane
+
+NORMALNIE ZE MOZNA POBRAC SE NOTATKI NA KOMPA NP, pobiera ci sie folder NOTES a w nim kazda notatka o ja pierdole

@@ -1,6 +1,5 @@
 import Note from "./Note";
 import Button from "./Button";
-import "./NoteList.css";
 
 export default function NoteList({
   notes,
