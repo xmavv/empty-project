@@ -2,6 +2,8 @@ import NoteList from "./NoteList";
 import NoteInput from "./NoteInput";
 import Toggle from "./Toggle";
 
+import { Toaster, toast } from "sonner";
+
 import { useState } from "react";
 import useLocalStorage from "use-local-storage";
 
@@ -38,6 +40,12 @@ const notesArr = [
     color: "green",
   },
 ];
+
+const themeColor = {
+  dark: "#040404",
+  light: "#f6f6f6",
+  primary: "#178ed3",
+};
 
 export default function App() {
   const [selectedNote, setSelectedNote] = useState(null);
@@ -82,6 +90,7 @@ export default function App() {
 
     setShowAddNote(false);
     setSelectedNote(note);
+    toast.success("note succesfully added!");
   }
 
   //really not good to have the same operation 2 times
@@ -99,6 +108,8 @@ export default function App() {
           : note
       )
     );
+
+    toast.info("note succesfully edited!");
   }
 
   function handleDeleteNote(noteToDelete) {
@@ -107,6 +118,7 @@ export default function App() {
     setSelectedNote(null);
     setTitleFromInput("");
     setDescriptionFromInput("");
+    toast.warning("note succesfully deleted!");
   }
 
   function handleThemeChange() {
@@ -143,6 +155,22 @@ export default function App() {
           setColor={setColor}
         />
       </div>
+      <Toaster
+        expand={true}
+        duration={3000}
+        position="bottom-left"
+        toastOptions={{
+          style: {
+            backgroundColor: isDark ? themeColor.dark : themeColor.light,
+            color: themeColor.primary,
+            border: `1px solid ${themeColor.primary}`,
+            width: "27rem",
+            // display: "flex",
+            // justifyContent: "center",
+          },
+          // className: "my-toast", isnt working ? thats why i have to do it kinda manually upstairs
+        }}
+      />
       <Toggle isChecked={isDark} onChange={handleThemeChange} />
     </div>
   );
