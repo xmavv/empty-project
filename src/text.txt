@@ -2,6 +2,14 @@ chowanie tej lewej strony w sensie listy i to przez to ze damy width 0 na liste 
 
 zmienic ten primary color w zaleznosci od tych kropek do zmiany w ui
 
-wszystko do osobnych cssow, ciezko w sumie teraz bo wsdzystko sie posypie nie wiem gdzie co jest uzywane
-
 NORMALNIE ZE MOZNA POBRAC SE NOTATKI NA KOMPA NP, pobiera ci sie folder NOTES a w nim kazda notatka o ja pierdole
+https://www.youtube.com/watch?v=IPEqb_AJbAQ&ab_channel=CodeWithAamir
+https://www.youtube.com/watch?v=io2blfAlO6E&ab_channel=uidotdev
+
+moze byc powiadomoenie ze dodales z tego https://sonner.emilkowal.ski
+
+jak notatka jest taka sama jak byla to zablokowac mozliwosc edytowania i wywolania wtedy tej funkcji nie
+
+klawisz dlete powinien usuwac notatke --> bylo w js30
+
+no jeszcze mozna zrobic ze jest ten przycisk undo no nie ale to juz mega ogolnie jest
