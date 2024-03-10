@@ -58,7 +58,7 @@ export default function NoteInput({
 
   return (
     <div>
-      <form className="noteInput">
+      <form className="noteInput" onSubmit={(e) => e.preventDefault()}>
         <input
           value={titleFromInput}
           onChange={(e) =>
