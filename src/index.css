@@ -99,6 +99,12 @@ body {
   padding: 2rem;
 }
 
+.noteList__buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .noteList__item {
   width: 60ch;
 
@@ -195,7 +201,12 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
 .btn.relative {
   position: relative;
-  margin: 2rem 3rem;
+  margin: 3rem 3rem;
+}
+
+.btn.relative.download {
+  text-decoration: none;
+  height: min-content;
 }
 
 .btn.absolute.right {
@@ -326,6 +337,10 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
     height: auto;
   }
 
+  .noteList__buttons {
+    justify-content: start;
+  }
+
   .noteList__item {
     width: 85vw;
   }
@@ -366,6 +381,11 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 
   .noteList {
     padding-left: 0.5rem;
+  }
+
+  .noteList__buttons {
+    flex-direction: column;
+    align-items: start;
   }
 
   .placeholderContainer {
