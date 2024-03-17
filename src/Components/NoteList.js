@@ -23,9 +23,18 @@ export default function NoteList({
           />
         ))}
       </ul>
-      <Button onClick={onAddNote} position="relative">
-        Add note
-      </Button>
+      <div className="noteList__buttons">
+        <a
+          className="btn relative download"
+          href="./testing/xd.txt"
+          download="xd.txt"
+        >
+          Download Your notes
+        </a>
+        <Button onClick={onAddNote} position="relative">
+          Add note
+        </Button>
+      </div>
     </div>
   );
 }
