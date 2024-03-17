@@ -97,6 +97,7 @@ body {
   overflow-y: scroll;
   height: 85vh;
   padding: 2rem;
+  scrollbar-color: var(--color-primary) var(--btn-color-hover);
 }
 
 .noteList__buttons {
