@@ -278,10 +278,10 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
 }
 
 [data-theme="dark"] {
-  --bg-color: #0a0a0a;
+  --bg-color: #111110;
   --btn-color: #151515;
   --btn-color-hover: #1f1f1f;
-  --fg-color: #040404;
+  --fg-color: #0b0b09;
   --text-color-primary: #f6f6f6;
   --toggle-bg: #283452;
   --toggle-fg: #00a6ff;

@@ -42,7 +42,7 @@ const notesArr = [
 ];
 
 const themeColor = {
-  dark: "#040404",
+  dark: "#0b0b09",
   light: "#f6f6f6",
   primary: "#178ed3",
 };
@@ -66,7 +66,7 @@ export default function App() {
   // pierwszy raz bierze z systemu, ale ostatecznie bierze to co sobie ustawil na tronie jak pomysli ze to drugie jest jednak lepsze
 
   document.querySelector("body").style.backgroundColor = isDark
-    ? "#0a0a0a"
+    ? "#111110"
     : "#f8f8f8";
 
   function handleSelectedNote(note) {
@@ -128,7 +128,7 @@ export default function App() {
     // really not good React is all about inmutablity and dom traversing and I do this omg
     document.querySelector("body").style.backgroundColor = isDark
       ? "#f8f8f8"
-      : "#0a0a0a";
+      : "#111110";
   }
 
   return (
