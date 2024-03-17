@@ -96,17 +96,31 @@ export default function App() {
   //really not good to have the same operation 2 times
 
   function handleUpdateNote(noteToUpdate) {
+    if (
+      noteToUpdate.title === titleFromInput &&
+      noteToUpdate.description === descriptionFromInput &&
+      noteToUpdate.color === color
+    ) {
+      return;
+    }
+
     setNotes((notes) =>
-      notes.map((note) =>
-        note.id === noteToUpdate.id
-          ? {
-              ...note,
-              title: titleFromInput,
-              description: descriptionFromInput,
-              color: color,
-            }
-          : note
-      )
+      notes.map((note) => {
+        if (note.id === noteToUpdate.id) {
+          const newNote = {
+            ...note,
+            title: titleFromInput,
+            description: descriptionFromInput,
+            color: color,
+          };
+
+          setSelectedNote(newNote);
+
+          return newNote;
+        } else {
+          return note;
+        }
+      })
     );
 
     toast.info("note succesfully edited!");
