@@ -205,11 +205,6 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   margin: 3rem 3rem;
 }
 
-.btn.relative.download {
-  text-decoration: none;
-  height: min-content;
-}
-
 .btn.absolute.right {
   bottom: 3%;
   right: 3%;
