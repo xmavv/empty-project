@@ -172,7 +172,7 @@ export default function App() {
       <Toaster
         expand={true}
         duration={3000}
-        position="bottom-left"
+        position="top-center"
         toastOptions={{
           style: {
             backgroundColor: isDark ? themeColor.dark : themeColor.light,
