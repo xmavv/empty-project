@@ -13,6 +13,15 @@
   --green: rgb(18, 142, 57);
 }
 
+.my-toast {
+  background-color: var(--fg-color);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  width: "27rem";
+  right: "2rem";
+  bottom: "2rem";
+}
+
 html {
   box-sizing: border-box;
   font-size: 62.5%;
