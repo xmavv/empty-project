@@ -9,19 +9,14 @@ export default function NoteList({
   selectedNote,
   onAddNote,
 }) {
-  function handleShowNoteList() {}
-  // jak teraz zrobic zeby ta klase zmienic zeby pokazala sie notelista?
-  // jak narazie chyba za ciezko dla mnie bo to klase trzeba zmienic jak sie zmienia state?
-
   // no i tutaj oczywiscie trzeba zrobic debounce zeby uzytkownik mogl pobrac powiedzmy tylko co 5sekund
   // i wyswietlic o tym toasta gdy bedzie chcial wczesniej
 
   function makeNoteFile(noteToDownload) {
     //text inside file
-    const textToSave = noteToDownload.description;
+    const textInside = noteToDownload.description;
 
-    //creating new blob
-    const blob = new Blob([textToSave], { type: "text/directory" });
+    const blob = new Blob([textInside], { type: "text/directory" });
 
     //creating link to download a file
     const a = document.createElement("a");
@@ -29,9 +24,7 @@ export default function NoteList({
     a.href = window.URL.createObjectURL(blob);
     a.style.display = "none";
 
-    //add link to document
     document.body.appendChild(a);
-
     a.click();
 
     window.URL.revokeObjectURL(a.href);
@@ -39,6 +32,24 @@ export default function NoteList({
 
     toast.success("note succesfully downloaded!");
   }
+
+  let lastExecutionTime;
+  function checkDelay(callback, delay) {
+    const currTime = new Date().getTime();
+
+    if(lastExecutionTime && (currTime - lastExecutionTime < delay)) {
+      toast.warning('You can download one note per 5sec!', {
+        style: {width: '32rem'}
+      });
+
+      lastExecutionTime = currTime;
+      return;
+    }
+
+    callback();
+    lastExecutionTime = currTime;
+  }
+
 
   return (
     <div className="notes">
@@ -56,7 +67,7 @@ export default function NoteList({
         {selectedNote && (
           <Button
             position="relative"
-            onClick={() => makeNoteFile(selectedNote)}
+            onClick={() => checkDelay(() => makeNoteFile(selectedNote), 5000)}
           >
             Download selected note
           </Button>
