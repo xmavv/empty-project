@@ -174,7 +174,14 @@ export default function App() {
         duration={3000}
         position={window.innerWidth > 600 ? "bottom-right" : "top-center"}
         toastOptions={{
-          className: "my-toast",
+          style: {
+            backgroundColor: isDark ? themeColor.dark : themeColor.light,
+            color: themeColor.primary,
+            border: `1px solid ${themeColor.primary}`,
+            width: "27rem",
+            right: "2rem",
+            bottom: "2rem",
+          },
         }}
       />
       <Toggle isChecked={isDark} onChange={handleThemeChange} />
