@@ -132,7 +132,7 @@ export default function App() {
     setSelectedNote(null);
     setTitleFromInput("");
     setDescriptionFromInput("");
-    toast.warning("note succesfully deleted!");
+    toast.info("note succesfully deleted!");
   }
 
   function handleThemeChange() {
@@ -172,17 +172,16 @@ export default function App() {
       <Toaster
         expand={true}
         duration={3000}
-        position="bottom-left"
+        position={window.innerWidth > 600 ? "bottom-right" : "top-center"}
         toastOptions={{
           style: {
             backgroundColor: isDark ? themeColor.dark : themeColor.light,
             color: themeColor.primary,
             border: `1px solid ${themeColor.primary}`,
             width: "27rem",
-            // display: "flex",
-            // justifyContent: "center",
+            right: "2rem",
+            bottom: "2rem",
           },
-          // className: "my-toast", isnt working ? thats why i have to do it kinda manually upstairs
         }}
       />
       <Toggle isChecked={isDark} onChange={handleThemeChange} />
