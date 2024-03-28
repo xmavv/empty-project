@@ -190,10 +190,12 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   background-color: var(--btn-color);
   border: none;
   outline: none;
+  transition: color .1s ease, background-color .1s ease;
 }
 
 .btn:hover {
-  background-color: var(--btn-color-hover);
+  background-color: var(--color-primary);
+  color: var(--btn-color);
 }
 
 .btn.absolute {
