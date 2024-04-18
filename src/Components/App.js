@@ -93,9 +93,9 @@ export default function App() {
     toast.success("note succesfully added!");
   }
 
-  //really not good to have the same operation 2 times
-
   function handleUpdateNote(noteToUpdate) {
+    toast.info("note succesfully edited!");
+
     if (
       noteToUpdate.title === titleFromInput &&
       noteToUpdate.description === descriptionFromInput &&
