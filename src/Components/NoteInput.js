@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Button from "./Button";
 import Dot from "./Dot";
 import PlaceholderContainer from "./PlaceholderContainer";
@@ -32,12 +33,6 @@ export default function NoteInput({
     handleAddNoteToList(newNote);
   }
 
-  function handleEditNoteSubmit(e) {
-    // e.preventDefault();
-
-    handleUpdateNote(selectedNote);
-  }
-
   function handleDeleteNoteSubmit(e) {
     e.preventDefault();
 
@@ -45,28 +40,67 @@ export default function NoteInput({
     if (toDlete) handleDeleteNote(selectedNote);
   }
 
-  function handleEmptyNote(e) {
-    //this function will execute only once if needed (so when selectedNote && showAddNote are both FALSE)
-    // (so at first render of app, and while deleting one of the notes)
-    // when u start typing state showAddNote = true and this function wont be executed again
-    // cause we are in normal showAddNote=true state so as u would click the button
+  function makeNoteFile(noteToDownload) {
+    //text inside file
+    const textInside = noteToDownload.description;
 
-    setShowAddNote(true);
-    e.target.nodeName === "INPUT"
-      ? setTitleFromInput(e.target.value)
-      : setDescriptionFromInput(e.target.value);
+    const blob = new Blob([textInside], { type: "text/directory" });
+
+    //creating link to download a file
+    const a = document.createElement("a");
+    a.download = `${noteToDownload.title}.txt`;
+    a.href = window.URL.createObjectURL(blob);
+    a.style.display = "none";
+
+    document.body.appendChild(a);
+    a.click();
+
+    window.URL.revokeObjectURL(a.href);
+    document.body.removeChild(a);
+
+    toast.success("note succesfully downloaded!");
   }
+
+  let lastExecutionTime;
+  function checkDelay(callback, delay) {
+    const currTime = new Date().getTime();
+
+    if (lastExecutionTime && currTime - lastExecutionTime < delay) {
+      toast.warning("You can download one note per 5sec!", {
+        style: { width: "32rem" },
+      });
+
+      lastExecutionTime = currTime;
+      return;
+    }
+
+    callback();
+    lastExecutionTime = currTime;
+  }
+
+  //nie pokazuje sie toast EDITED, bo tam w Componencie App sprawdzam czy aktualny title jest taki sam jak ten
+  //z przekazanej notatki, a gdy na nowo wchodze do innej notatki to tak wlasnie jest
+  useEffect(
+    function () {
+      if (selectedNote === null) return;
+
+      const timeout = setTimeout(() => {
+        handleUpdateNote(selectedNote);
+      }, 5000);
+
+      return () => clearTimeout(timeout);
+    },
+    [titleFromInput, descriptionFromInput, handleUpdateNote, selectedNote]
+  );
 
   return (
     <div>
       <form className="noteInput" onSubmit={(e) => e.preventDefault()}>
         <input
           value={titleFromInput}
-          onChange={(e) =>
-            !selectedNote && !showAddNote // Z PRAW DE MORGANA !a * !b = !(a+b) ==> !(selectedNote || showAddNote) ale tamto jest bardziej zrozumiale :)
-              ? handleEmptyNote(e)
-              : setTitleFromInput(e.target.value)
-          }
+          onChange={(e) => {
+            setTitleFromInput(e.target.value);
+          }}
           placeholder={
             showAddNote
               ? "Type title of your note"
@@ -76,11 +110,7 @@ export default function NoteInput({
         ></input>
         <textarea
           value={descriptionFromInput}
-          onChange={(e) =>
-            !selectedNote && !showAddNote
-              ? handleEmptyNote(e)
-              : setDescriptionFromInput(e.target.value)
-          }
+          onChange={(e) => setDescriptionFromInput(e.target.value)}
           contentEditable
           className="noteInput__body"
           placeholder={showAddNote ? "Type description of your note" : ""}
@@ -105,14 +135,14 @@ export default function NoteInput({
           <>
             <Button
               position="absolute"
-              direction="right"
-              onClick={handleEditNoteSubmit}
+              direction="left"
+              onClick={() => checkDelay(() => makeNoteFile(selectedNote), 5000)}
             >
-              EDIT
+              DOWNLOAD
             </Button>
             <Button
               position="absolute"
-              direction="left"
+              direction="right"
               onClick={handleDeleteNoteSubmit}
             >
               DELETE

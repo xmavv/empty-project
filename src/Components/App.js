@@ -4,7 +4,7 @@ import Toggle from "./Toggle";
 
 import { Toaster, toast } from "sonner";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
 
 const notesArr = [
@@ -49,7 +49,7 @@ const themeColor = {
 
 export default function App() {
   const [selectedNote, setSelectedNote] = useState(null);
-  const [showAddNote, setShowAddNote] = useState(false);
+  const [showAddNote, setShowAddNote] = useState(true);
   const [notes, setNotes] = useLocalStorage("notes", []);
   const [titleFromInput, setTitleFromInput] = useState("");
   const [descriptionFromInput, setDescriptionFromInput] = useState("");
@@ -65,9 +65,14 @@ export default function App() {
 
   // pierwszy raz bierze z systemu, ale ostatecznie bierze to co sobie ustawil na tronie jak pomysli ze to drugie jest jednak lepsze
 
-  document.querySelector("body").style.backgroundColor = isDark
-    ? "#111110"
-    : "#f8f8f8";
+  useEffect(
+    function () {
+      document.querySelector("body").style.backgroundColor = isDark
+        ? "#111110"
+        : "#f8f8f8";
+    },
+    [isDark]
+  );
 
   function handleSelectedNote(note) {
     setSelectedNote(note);
@@ -94,8 +99,6 @@ export default function App() {
   }
 
   function handleUpdateNote(noteToUpdate) {
-    toast.info("note succesfully edited!");
-
     if (
       noteToUpdate.title === titleFromInput &&
       noteToUpdate.description === descriptionFromInput &&
@@ -140,6 +143,8 @@ export default function App() {
 
     // unfortunately i have to do it like this cause when i started i put some style on body and now its getting a little bit awkward when i delete them
     // really not good React is all about inmutablity and dom traversing and I do this omg
+
+    //ITS OK MATTHEW WITH EFFECTS U REALLY CAN DO THIS
     document.querySelector("body").style.backgroundColor = isDark
       ? "#f8f8f8"
       : "#111110";
