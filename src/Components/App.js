@@ -1,6 +1,7 @@
 import NoteList from "./NoteList";
 import NoteInput from "./NoteInput";
 import Toggle from "./Toggle";
+import Modal from "./Modal";
 
 import { Toaster, toast } from "sonner";
 
@@ -189,6 +190,9 @@ export default function App() {
           },
         }}
       />
+      <Modal>
+        <p>xd</p>
+      </Modal>
       <Toggle isChecked={isDark} onChange={handleThemeChange} />
     </div>
   );
