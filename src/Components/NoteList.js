@@ -37,9 +37,9 @@ export default function NoteList({
   function checkDelay(callback, delay) {
     const currTime = new Date().getTime();
 
-    if(lastExecutionTime && (currTime - lastExecutionTime < delay)) {
-      toast.warning('You can download one note per 5sec!', {
-        style: {width: '32rem'}
+    if (lastExecutionTime && currTime - lastExecutionTime < delay) {
+      toast.warning("You can download one note per 5sec!", {
+        style: { width: "32rem" },
       });
 
       lastExecutionTime = currTime;
@@ -50,14 +50,13 @@ export default function NoteList({
     lastExecutionTime = currTime;
   }
 
-
   return (
     <div className="notes">
       <ul className="noteList">
         {notes.map((note) => (
           <Note
             note={note}
-            key={note.title}
+            key={note.id}
             onSelectedNote={onSelectedNote}
             selectedNote={selectedNote}
           />

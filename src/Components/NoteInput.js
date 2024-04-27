@@ -57,24 +57,6 @@ export default function NoteInput({
       : setDescriptionFromInput(e.target.value);
   }
 
-  function debounce(func, delay) {
-    let timeout = null;
-    return () => {
-      if (timeout) clearTimeout(timeout);
-
-      timeout = setTimeout(() => {
-        func();
-      }, delay);
-    };
-  }
-
-  const fun = debounce(handleEditNoteSubmit, 2000);
-
-  function handleNoteChange(e) {
-    setDescriptionFromInput(e.target.value);
-    fun();
-  }
-
   return (
     <div>
       <form className="noteInput" onSubmit={(e) => e.preventDefault()}>
@@ -95,7 +77,9 @@ export default function NoteInput({
         <textarea
           value={descriptionFromInput}
           onChange={(e) =>
-            !selectedNote && !showAddNote ? handleEmptyNote(e) : fun()
+            !selectedNote && !showAddNote
+              ? handleEmptyNote(e)
+              : setDescriptionFromInput(e.target.value)
           }
           contentEditable
           className="noteInput__body"
