@@ -2,11 +2,27 @@ import NoteList from "./NoteList";
 import NoteInput from "./NoteInput";
 import Toggle from "./Toggle";
 import Modal from "./Modal";
+import UserInstructions from "./UserInstructions";
 
 import { Toaster, toast } from "sonner";
 
 import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
+
+const userInstructions = [
+  {
+    instruction: 'delete note',
+    key: 'DELETE'
+  },
+  {
+    instruction: 'add note',
+    key: 'xd'
+  },
+  {
+    instruction: 'zrob cos xd',
+    key: 'heheheh'
+  },
+];
 
 const notesArr = [
   {
@@ -191,7 +207,7 @@ export default function App() {
         }}
       />
       <Modal>
-        <p>xd</p>
+        <UserInstructions />
       </Modal>
       <Toggle isChecked={isDark} onChange={handleThemeChange} />
     </div>

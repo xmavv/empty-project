@@ -1,0 +1,17 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .6);
+    /* to zalezy od motywu ^^^^^ */
+    z-index: 10000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* ALE TO BYM CHCIAL ZROBIC MARGIN AUTO I CZEMU TO NIBY NIE DZIALA
+    WES ZOBACZ TO */
+}

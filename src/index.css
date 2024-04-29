@@ -61,6 +61,11 @@ body {
   margin-bottom: 3rem;
 }
 
+.heading-secondary {
+  font-size: 5rem;
+  margin-bottom: 3rem;
+}
+
 .container {
   display: grid;
   gap: 2rem;
@@ -294,6 +299,30 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   --text-color-primary: #f6f6f6;
   --toggle-bg: #283452;
   --toggle-fg: #00a6ff;
+}
+
+.user-instructions {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  background-color: black;
+  /* BASED ON CURRENT THEME ^^^^^ */
+  padding: 3rem;
+}
+
+.instructionList {
+  list-style: none;
+}
+
+.instructionList__item {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.instructionList__item--space {
+  display: flex;
+  width: 30rem;
+  justify-content: space-between;
 }
 
 /* 1100px */

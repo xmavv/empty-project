@@ -1,3 +1,7 @@
+import './Modal.css'
+
 export default function Modal({ children }) {
-  return { children };
+  return <div className="modal">
+    {children}
+  </div>;
 }
