@@ -33,12 +33,25 @@ export default function NoteInput({
     handleAddNoteToList(newNote);
   }
 
-  function handleDeleteNoteSubmit(e) {
-    e.preventDefault();
-
+  function handleDeleteNoteSubmit() {
     const toDlete = window.confirm("Are You sure to delete this note?");
     if (toDlete) handleDeleteNote(selectedNote);
   }
+
+  // DELETE key handle
+  useEffect(
+    function () {
+      function keyDelete(e) {
+        if (selectedNote !== null && e.code === "Delete")
+          handleDeleteNoteSubmit();
+      }
+
+      document.addEventListener("keyup", keyDelete);
+
+      return () => document.removeEventListener("keyup", keyDelete);
+    },
+    [selectedNote, handleDeleteNoteSubmit]
+  );
 
   function makeNoteFile(noteToDownload) {
     //text inside file

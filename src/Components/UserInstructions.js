@@ -10,6 +10,10 @@ const userInstructions = [
     key: "INSERT",
   },
   {
+    action: "submit note to list",
+    key: "(while typing title) ENTER",
+  },
+  {
     action: "download note",
     key: "CTRL + S",
   },

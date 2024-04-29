@@ -56,7 +56,7 @@ export default function App() {
   const [titleFromInput, setTitleFromInput] = useState("");
   const [descriptionFromInput, setDescriptionFromInput] = useState("");
   const [color, setColor] = useState("undefined");
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   // matches conferts to true or false value
@@ -138,6 +138,7 @@ export default function App() {
     setSelectedNote(null);
     setTitleFromInput("");
     setDescriptionFromInput("");
+    setShowAddNote(true);
     toast.info("note succesfully deleted!");
   }
 
@@ -152,6 +153,18 @@ export default function App() {
       ? "#f8f8f8"
       : "#111110";
   }
+
+  //ControlLeft, ControlRight, KeyM, Insert
+  // INSERT key handle
+  useEffect(function () {
+    function keyAdd(e) {
+      if (e.code === "Insert") handleAddNoteButton();
+    }
+
+    document.addEventListener("keyup", keyAdd);
+
+    return () => document.removeEventListener("keyup", keyAdd);
+  }, []);
 
   return (
     <div className="app" data-theme={isDark ? "dark" : "light"}>
