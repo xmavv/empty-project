@@ -195,7 +195,7 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   background-color: var(--btn-color);
   border: none;
   outline: none;
-  transition: color .1s ease, background-color .1s ease;
+  transition: color 0.1s ease, background-color 0.1s ease;
 }
 
 .btn:hover {
@@ -301,28 +301,11 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   --toggle-fg: #00a6ff;
 }
 
-.user-instructions {
+.key-instructions {
   position: absolute;
-  width: 70%;
-  height: 70%;
-  background-color: black;
-  /* BASED ON CURRENT THEME ^^^^^ */
-  padding: 3rem;
-}
-
-.instructionList {
-  list-style: none;
-}
-
-.instructionList__item {
-  padding: 1rem;
-  margin: 1rem;
-}
-
-.instructionList__item--space {
-  display: flex;
-  width: 30rem;
-  justify-content: space-between;
+  right: 17rem;
+  bottom: 1.5rem;
+  cursor: pointer;
 }
 
 /* 1100px */

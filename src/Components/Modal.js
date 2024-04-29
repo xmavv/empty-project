@@ -1,7 +1,9 @@
-import './Modal.css'
+import "./Modal.css";
 
-export default function Modal({ children }) {
-  return <div className="modal">
-    {children}
-  </div>;
+export default function Modal({ children, onShowModal }) {
+  return (
+    <div className="modal" onClick={(e) => onShowModal((s) => !s)}>
+      {children}
+    </div>
+  );
 }

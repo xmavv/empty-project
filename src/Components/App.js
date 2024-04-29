@@ -9,21 +9,6 @@ import { Toaster, toast } from "sonner";
 import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
 
-const userInstructions = [
-  {
-    instruction: 'delete note',
-    key: 'DELETE'
-  },
-  {
-    instruction: 'add note',
-    key: 'xd'
-  },
-  {
-    instruction: 'zrob cos xd',
-    key: 'heheheh'
-  },
-];
-
 const notesArr = [
   {
     id: 1,
@@ -71,6 +56,7 @@ export default function App() {
   const [titleFromInput, setTitleFromInput] = useState("");
   const [descriptionFromInput, setDescriptionFromInput] = useState("");
   const [color, setColor] = useState("undefined");
+  const [showModal, setShowModal] = useState(true);
 
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   // matches conferts to true or false value
@@ -206,9 +192,16 @@ export default function App() {
           },
         }}
       />
-      <Modal>
-        <UserInstructions />
-      </Modal>
+      {showModal && (
+        <Modal onShowModal={setShowModal}>
+          <UserInstructions />
+        </Modal>
+      )}
+      <div className="key-instructions" onClick={() => setShowModal((s) => !s)}>
+        <p>
+          <span>📝</span>KEY - INSTRUCTIONS
+        </p>
+      </div>
       <Toggle isChecked={isDark} onChange={handleThemeChange} />
     </div>
   );
