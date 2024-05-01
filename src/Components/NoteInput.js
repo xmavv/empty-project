@@ -38,7 +38,7 @@ export default function NoteInput({
     if (toDlete) handleDeleteNote(selectedNote);
   }
 
-  // DELETE key handle
+  // DELETE key handle to delete note
   useEffect(
     function () {
       function keyDelete(e) {
@@ -51,6 +51,40 @@ export default function NoteInput({
       return () => document.removeEventListener("keyup", keyDelete);
     },
     [selectedNote, handleDeleteNoteSubmit]
+  );
+
+  // CTRL + S key handle download note
+  const pressedKeys = {};
+  useEffect(
+    function () {
+      function keyPressed(e) {
+        if (selectedNote === null) return;
+
+        function keyDownload(e) {
+          pressedKeys[e.code] = true;
+
+          if (
+            pressedKeys["ControlLeft"] === true &&
+            pressedKeys["KeyS"] === true
+          )
+            checkDelay(() => makeNoteFile(selectedNote), 5000);
+        }
+        keyDownload(e);
+      }
+
+      function keyReleased(e) {
+        pressedKeys[e.code] = false;
+      }
+
+      document.addEventListener("keydown", keyPressed);
+      document.addEventListener("keyup", keyReleased);
+
+      return () => {
+        document.removeEventListener("keydown", keyPressed);
+        document.removeEventListener("keyup", keyReleased);
+      };
+    },
+    [selectedNote]
   );
 
   function makeNoteFile(noteToDownload) {

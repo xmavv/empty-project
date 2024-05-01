@@ -154,8 +154,7 @@ export default function App() {
       : "#111110";
   }
 
-  //ControlLeft, ControlRight, KeyM, Insert
-  // INSERT key handle
+  // INSERT key handle to add note
   useEffect(function () {
     function keyAdd(e) {
       if (e.code === "Insert") handleAddNoteButton();
@@ -164,6 +163,32 @@ export default function App() {
     document.addEventListener("keyup", keyAdd);
 
     return () => document.removeEventListener("keyup", keyAdd);
+  }, []);
+
+  // CTRL + M key handle to change theme
+  const pressedKeys = {};
+  useEffect(function () {
+    function keyPressed(e) {
+      function keyTheme(e) {
+        pressedKeys[e.code] = true;
+
+        if (pressedKeys["ControlLeft"] === true && pressedKeys["KeyM"] === true)
+          handleThemeChange();
+      }
+      keyTheme(e);
+    }
+
+    function keyReleased(e) {
+      pressedKeys[e.code] = false;
+    }
+
+    document.addEventListener("keydown", keyPressed);
+    document.addEventListener("keyup", keyReleased);
+
+    return () => {
+      document.removeEventListener("keydown", keyPressed);
+      document.removeEventListener("keyup", keyReleased);
+    };
   }, []);
 
   return (
