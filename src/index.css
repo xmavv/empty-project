@@ -61,6 +61,11 @@ body {
   margin-bottom: 3rem;
 }
 
+.heading-secondary {
+  font-size: 5rem;
+  margin-bottom: 3rem;
+}
+
 .container {
   display: grid;
   gap: 2rem;
@@ -190,10 +195,12 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   background-color: var(--btn-color);
   border: none;
   outline: none;
+  transition: color 0.1s ease, background-color 0.1s ease;
 }
 
 .btn:hover {
-  background-color: var(--btn-color-hover);
+  background-color: var(--color-primary);
+  color: var(--btn-color);
 }
 
 .btn.absolute {
@@ -292,6 +299,13 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   --text-color-primary: #f6f6f6;
   --toggle-bg: #283452;
   --toggle-fg: #00a6ff;
+}
+
+.key-instructions {
+  position: absolute;
+  right: 17rem;
+  bottom: 1.5rem;
+  cursor: pointer;
 }
 
 /* 1100px */

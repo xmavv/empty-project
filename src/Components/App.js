@@ -1,10 +1,12 @@
 import NoteList from "./NoteList";
 import NoteInput from "./NoteInput";
 import Toggle from "./Toggle";
+import Modal from "./Modal";
+import UserInstructions from "./UserInstructions";
 
 import { Toaster, toast } from "sonner";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
 
 const notesArr = [
@@ -49,11 +51,12 @@ const themeColor = {
 
 export default function App() {
   const [selectedNote, setSelectedNote] = useState(null);
-  const [showAddNote, setShowAddNote] = useState(false);
+  const [showAddNote, setShowAddNote] = useState(true);
   const [notes, setNotes] = useLocalStorage("notes", []);
   const [titleFromInput, setTitleFromInput] = useState("");
   const [descriptionFromInput, setDescriptionFromInput] = useState("");
   const [color, setColor] = useState("undefined");
+  const [showModal, setShowModal] = useState(false);
 
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   // matches conferts to true or false value
@@ -65,9 +68,14 @@ export default function App() {
 
   // pierwszy raz bierze z systemu, ale ostatecznie bierze to co sobie ustawil na tronie jak pomysli ze to drugie jest jednak lepsze
 
-  document.querySelector("body").style.backgroundColor = isDark
-    ? "#111110"
-    : "#f8f8f8";
+  useEffect(
+    function () {
+      document.querySelector("body").style.backgroundColor = isDark
+        ? "#111110"
+        : "#f8f8f8";
+    },
+    [isDark]
+  );
 
   function handleSelectedNote(note) {
     setSelectedNote(note);
@@ -92,8 +100,6 @@ export default function App() {
     setSelectedNote(note);
     toast.success("note succesfully added!");
   }
-
-  //really not good to have the same operation 2 times
 
   function handleUpdateNote(noteToUpdate) {
     if (
@@ -132,6 +138,7 @@ export default function App() {
     setSelectedNote(null);
     setTitleFromInput("");
     setDescriptionFromInput("");
+    setShowAddNote(true);
     toast.info("note succesfully deleted!");
   }
 
@@ -140,10 +147,49 @@ export default function App() {
 
     // unfortunately i have to do it like this cause when i started i put some style on body and now its getting a little bit awkward when i delete them
     // really not good React is all about inmutablity and dom traversing and I do this omg
+
+    //ITS OK MATTHEW WITH EFFECTS U REALLY CAN DO THIS
     document.querySelector("body").style.backgroundColor = isDark
       ? "#f8f8f8"
       : "#111110";
   }
+
+  // INSERT key handle to add note
+  useEffect(function () {
+    function keyAdd(e) {
+      if (e.code === "Insert") handleAddNoteButton();
+    }
+
+    document.addEventListener("keyup", keyAdd);
+
+    return () => document.removeEventListener("keyup", keyAdd);
+  }, []);
+
+  // CTRL + M key handle to change theme
+  const pressedKeys = {};
+  useEffect(function () {
+    function keyPressed(e) {
+      function keyTheme(e) {
+        pressedKeys[e.code] = true;
+
+        if (pressedKeys["ControlLeft"] === true && pressedKeys["KeyM"] === true)
+          handleThemeChange();
+      }
+      keyTheme(e);
+    }
+
+    function keyReleased(e) {
+      pressedKeys[e.code] = false;
+    }
+
+    document.addEventListener("keydown", keyPressed);
+    document.addEventListener("keyup", keyReleased);
+
+    return () => {
+      document.removeEventListener("keydown", keyPressed);
+      document.removeEventListener("keyup", keyReleased);
+    };
+  }, []);
 
   return (
     <div className="app" data-theme={isDark ? "dark" : "light"}>
@@ -184,6 +230,16 @@ export default function App() {
           },
         }}
       />
+      {showModal && (
+        <Modal onShowModal={setShowModal}>
+          <UserInstructions />
+        </Modal>
+      )}
+      <div className="key-instructions" onClick={() => setShowModal((s) => !s)}>
+        <p>
+          <span>📝</span>KEY - INSTRUCTIONS
+        </p>
+      </div>
       <Toggle isChecked={isDark} onChange={handleThemeChange} />
     </div>
   );
