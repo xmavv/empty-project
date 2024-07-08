@@ -198,7 +198,9 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   transition: color 0.1s ease, background-color 0.1s ease;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:active,
+.btn:focus {
   background-color: var(--color-primary);
   color: var(--btn-color);
 }
