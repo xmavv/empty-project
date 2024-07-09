@@ -1,0 +1,36 @@
+.btn {
+    font-family: inherit;
+    font-size: 1.3rem;
+    padding: 1rem;
+    color: var(--color-primary);
+    background-color: var(--btn-color);
+    border: none;
+    outline: none;
+    transition: color 0.1s ease, background-color 0.1s ease;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+    background-color: var(--color-primary);
+    color: var(--btn-color);
+}
+
+.btn.absolute {
+    position: absolute;
+}
+
+.btn.relative {
+    position: relative;
+    margin: 3rem 3rem;
+}
+
+.btn.absolute.right {
+    bottom: 3%;
+    right: 3%;
+}
+
+.btn.absolute.left {
+    bottom: 3%;
+    left: 3%;
+}

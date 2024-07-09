@@ -1,0 +1,32 @@
+.dot {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    margin: 0.5rem;
+}
+
+.dot.red {
+    background-color: var(--red);
+    /* box-shadow: 0 0 0.3rem var(--red); */
+}
+.dot.green {
+    background-color: var(--green);
+    /* box-shadow: 0 0 0.3rem var(--green); */
+}
+.dot.blue {
+    background-color: var(--blue);
+    /* box-shadow: 0 0 0.3rem var(--blue); */
+}
+.dot.undefined {
+    background-color: grey;
+}
+
+.dot.absolute {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    top: 3%;
+    right: 3%;
+    cursor: pointer;
+}

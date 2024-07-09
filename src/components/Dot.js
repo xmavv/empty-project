@@ -1,3 +1,5 @@
+import './Dot.css'
+
 export default function Dot({ setColor, cssClass, color }) {
   function changeColor(color) {
     if (!color) return;

@@ -48,13 +48,6 @@ body {
   transition: background-color 250ms ease-in-out;
 }
 
-.app {
-  background-color: var(--bg-color);
-  color: var(--text-color-primary);
-
-  transition: background-color 250ms ease-in-out;
-}
-
 .heading-primary {
   font-size: 5rem;
   text-align: center;
@@ -66,231 +59,10 @@ body {
   margin-bottom: 3rem;
 }
 
-.container {
-  display: grid;
-  gap: 2rem;
-
-  grid-template-columns: max-content 1fr;
-}
-
-.dot {
-  display: inline-block;
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  margin: 0.5rem;
-}
-
-.dot.red {
-  background-color: var(--red);
-  /* box-shadow: 0 0 0.3rem var(--red); */
-}
-.dot.green {
-  background-color: var(--green);
-  /* box-shadow: 0 0 0.3rem var(--green); */
-}
-.dot.blue {
-  background-color: var(--blue);
-  /* box-shadow: 0 0 0.3rem var(--blue); */
-}
-.dot.undefined {
-  background-color: grey;
-}
-
-.noteList {
-  list-style: none;
-  overflow-y: scroll;
-  height: 85vh;
-  padding: 2rem;
-  scrollbar-color: var(--color-primary) var(--btn-color-hover);
-}
-
-.noteList__buttons {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.noteList__item {
-  width: 60ch;
-
-  font-size: 1.2rem;
-  padding: 2rem 1rem;
-  border-radius: 2rem;
-  transition: box-shadow 0.5s ease;
-
-  cursor: pointer;
-}
-
 .heading-tertiary {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
-
-.noteList__item:hover,
-.noteList__item.selected {
-  -webkit-box-shadow: 14px 15px 14px -16px var(--color-primary);
-  -moz-box-shadow: 14px 15px 14px -16px var(--color-primary);
-  box-shadow: 5px 7px 25px -15px var(--color-primary);
-}
-
-/* -webkit-box-shadow: 14px 15px 14px -16px var(--color-primary);
--moz-box-shadow: 14px 15px 14px -16px var(--color-primary);
-box-shadow: 14px 15px 14px -16px var(--color-primary); */
-
-.noteInput {
-  width: 100%;
-  height: 85vh;
-  background-color: var(--fg-color);
-  font-size: 2rem;
-  border-radius: 2rem;
-  overflow: hidden;
-  padding: 1rem;
-  transition: box-shadow 0.5s ease;
-  position: relative;
-}
-
-.dot.absolute {
-  position: absolute;
-  width: 3rem;
-  height: 3rem;
-  top: 3%;
-  right: 3%;
-  cursor: pointer;
-}
-
-.noteInput:hover {
-  -webkit-box-shadow: 8px 15px 52px -33px var(--color-primary);
-  -moz-box-shadow: 8px 15px 52px -33px var(--color-primary);
-  box-shadow: 8px 15px 52px -33px var(--color-primary);
-}
-
-.noteInput__title {
-  font-style: italic;
-  padding: 1rem;
-  font-size: 2rem;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  width: 93%;
-  color: var(--text-color-primary);
-}
-
-.noteInput__body {
-  width: 100%;
-  height: 100%;
-  padding: 2rem 1rem;
-  outline: none;
-  border: none;
-  background-color: var(--fg-color);
-  color: var(--text-color-primary);
-}
-
-.btn {
-  font-family: inherit;
-  font-size: 1.3rem;
-  padding: 1rem;
-  color: var(--color-primary);
-  background-color: var(--btn-color);
-  border: none;
-  outline: none;
-  transition: color 0.1s ease, background-color 0.1s ease;
-}
-
-.btn:hover,
-.btn:active,
-.btn:focus {
-  background-color: var(--color-primary);
-  color: var(--btn-color);
-}
-
-.btn.absolute {
-  position: absolute;
-}
-
-.btn.relative {
-  position: relative;
-  margin: 3rem 3rem;
-}
-
-.btn.absolute.right {
-  bottom: 3%;
-  right: 3%;
-}
-
-.btn.absolute.left {
-  bottom: 3%;
-  left: 3%;
-}
-
-.notes {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-}
-
-.placeholderContainer {
-  position: relative;
-  bottom: 0.5rem;
-  font-size: 1.2rem;
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.placeholderContainer div {
-  display: flex;
-  align-items: center;
-}
-
-.placeholder__item {
-  color: var(--text-color-primary);
-  padding: 1rem;
-  outline: none;
-  border: none;
-  background-color: transparent;
-}
-
-.your-notes {
-  display: none;
-
-  font-size: 1.3rem;
-  align-items: center;
-  margin: 0 3rem;
-  cursor: pointer;
-}
-
-.btn--burger ~ span {
-  color: var(--color-primary);
-  margin: 0 1rem;
-}
-
-.btn--burger {
-  padding: 0;
-  background-color: var(--color-primary);
-  height: 2px;
-  width: 2rem;
-  position: relative;
-}
-
-.btn--burger::before,
-.btn--burger::after {
-  content: "";
-  position: absolute;
-  background-color: var(--color-primary);
-  width: 100%;
-  height: 2px;
-  margin: 0.7rem 0;
-  left: 0;
-}
-
-.btn--burger::before {
-  bottom: 0;
-}
-
-.btn--burger::after {
-  top: 0;
 }
 
 [data-theme="dark"] {
@@ -303,28 +75,10 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   --toggle-fg: #00a6ff;
 }
 
-.key-instructions {
-  position: absolute;
-  right: 17rem;
-  bottom: 1.5rem;
-  cursor: pointer;
-}
-
-/* 1100px */
-@media only screen and (max-width: 68.75em) {
-  .noteList__item {
-    width: 40ch;
-  }
-}
-
 /* 900px */
 @media only screen and (max-width: 56.25em) {
   html {
     font-size: 55%;
-  }
-
-  .noteList__item {
-    width: 30ch;
   }
 }
 
@@ -340,45 +94,6 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
     align-items: start;
     overflow-y: auto;
   }
-
-  .notes {
-    align-items: start;
-  }
-
-  .noteList {
-    height: auto;
-  }
-
-  .noteList__buttons {
-    justify-content: start;
-  }
-
-  .noteList__item {
-    width: 85vw;
-  }
-
-  .placeholderContainer {
-    bottom: 1rem;
-    right: 1%;
-    flex-direction: column;
-    position: relative;
-  }
-
-  .container {
-    grid-template-columns: 1fr;
-  }
-
-  .notes {
-    grid-row: 2/3;
-  }
-
-  .noteInput {
-    height: 80vh;
-  }
-
-  .your-notes {
-    display: flex;
-  }
 }
 
 /* 500px */
@@ -390,33 +105,10 @@ box-shadow: 14px 15px 14px -16px var(--color-primary); */
   body {
     padding: 2rem;
   }
-
-  .noteList {
-    padding-left: 0.5rem;
-  }
-
-  .noteList__buttons {
-    flex-direction: column;
-    align-items: start;
-  }
-
-  .placeholderContainer {
-    bottom: 0;
-  }
-
-  .placeholder__item {
-    font-size: 1.3rem;
-  }
 }
 
 @media only screen and (max-height: 50em) {
   body {
     overflow-y: auto;
-  }
-}
-
-@media only screen and (max-height: 50em) and (max-width: 75em) {
-  .placeholderContainer {
-    flex-direction: column;
   }
 }

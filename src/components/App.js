@@ -3,45 +3,12 @@ import NoteInput from "./NoteInput";
 import Toggle from "./Toggle";
 import Modal from "./Modal";
 import UserInstructions from "./UserInstructions";
+import styles from './App.module.css'
 
 import { Toaster, toast } from "sonner";
 
 import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
-
-const notesArr = [
-  {
-    id: 1,
-    title: "ja jestem mega szefem i robie se treninng nie",
-    description: "cosik se tu napisalem xd1",
-    color: "red",
-  },
-  {
-    id: 2,
-    title: "w sumie fajnie se tak poprogramowac hahfa",
-    description: "cosik se tu napisalem xd2",
-    color: "blue",
-  },
-  {
-    id: 3,
-    title: "porobie to na studia i zdam ten przedmiuot",
-    description: "cosik se tu napisalem xd3",
-    color: "green",
-  },
-  {
-    id: 4,
-    title:
-      "robie sobie strima ziomek potem lcize se zielone odpalam go lada momeny, robie ziome ta mamone",
-    description: "cosik se tu napisalem xd4",
-    color: "green",
-  },
-  {
-    id: 5,
-    title: "hahahahahaha olaf nobas",
-    description: "cosik se tu napisalem xd5",
-    color: "green",
-  },
-];
 
 const themeColor = {
   dark: "#0b0b09",
@@ -192,8 +159,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="app" data-theme={isDark ? "dark" : "light"}>
-      <div className="container">
+    <div className={styles.app} data-theme={isDark ? "dark" : "light"}>
+      <div className={styles.container}>
         <NoteList
           notes={notes}
           onSelectedNote={handleSelectedNote}
@@ -235,7 +202,7 @@ export default function App() {
           <UserInstructions />
         </Modal>
       )}
-      <div className="key-instructions" onClick={() => setShowModal((s) => !s)}>
+      <div className={styles.keyInstructions} onClick={() => setShowModal((s) => !s)}>
         <p>
           <span>📝</span>KEY - INSTRUCTIONS
         </p>

@@ -3,6 +3,7 @@ import Button from "./Button";
 import Dot from "./Dot";
 import PlaceholderContainer from "./PlaceholderContainer";
 import { toast } from "sonner";
+import styles from './Notes.module.css'
 
 export default function NoteInput({
   selectedNote,
@@ -142,7 +143,7 @@ export default function NoteInput({
 
   return (
     <div>
-      <form className="noteInput" onSubmit={(e) => e.preventDefault()}>
+      <form className={styles.noteInput} onSubmit={(e) => e.preventDefault()}>
         <input
           value={titleFromInput}
           onChange={(e) => {
@@ -153,13 +154,13 @@ export default function NoteInput({
               ? "Type title of your note"
               : "Choose a note or start typing to add new note"
           }
-          className="noteInput__title"
+          className={styles.noteInputTitle}
         ></input>
         <textarea
           value={descriptionFromInput}
           onChange={(e) => setDescriptionFromInput(e.target.value)}
           contentEditable
-          className="noteInput__body"
+          className={styles.noteInputBody}
           placeholder={showAddNote ? "Type description of your note" : ""}
         ></textarea>
         {(showAddNote || selectedNote) && (

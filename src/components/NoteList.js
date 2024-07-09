@@ -1,5 +1,6 @@
 import Note from "./Note";
 import Button from "./Button";
+import styles from './Notes.module.css'
 
 import { Toaster, toast } from "sonner";
 
@@ -10,8 +11,8 @@ export default function NoteList({
   onAddNote,
 }) {
   return (
-    <div className="notes">
-      <ul className="noteList">
+    <div className={styles.notes}>
+      <ul className={styles.noteList}>
         {notes.map((note) => (
           <Note
             note={note}
@@ -21,7 +22,7 @@ export default function NoteList({
           />
         ))}
       </ul>
-      <div className="noteList__buttons">
+      <div className={styles.noteListButtons}>
         <Button onClick={onAddNote} position="relative">
           Add note
         </Button>

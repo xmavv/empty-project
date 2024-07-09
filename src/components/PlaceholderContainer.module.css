@@ -1,0 +1,48 @@
+.placeholderContainer {
+    position: relative;
+    bottom: 0.5rem;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.placeholderContainer div {
+    display: flex;
+    align-items: center;
+}
+
+.placeholderItem {
+    color: var(--text-color-primary);
+    padding: 1rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+/* 900px */
+@media only screen and (max-width: 50em) {
+    .placeholderContainer {
+        bottom: 1rem;
+        right: 1%;
+        flex-direction: column;
+        position: relative;
+    }
+}
+
+/* 500px */
+@media only screen and (max-width: 31.25em) {
+    .placeholderContainer {
+        bottom: 0;
+    }
+
+    .placeholderItem {
+        font-size: 1.3rem;
+    }
+}
+
+@media only screen and (max-height: 50em) and (max-width: 75em) {
+    .placeholderContainer {
+        flex-direction: column;
+    }
+}
