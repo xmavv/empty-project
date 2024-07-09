@@ -7,7 +7,7 @@ function Main() {
     return <BrowserRouter>
         <Routes>
             <Route index element={<App />} />
-            <Route path=":instructions" element={<Modal>
+            <Route path="instructions" element={<Modal>
                 <UserInstructions />
             </Modal>} />
         </Routes>

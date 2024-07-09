@@ -1,4 +1,5 @@
 import styles from "./UserInstructions.module.css";
+import {useNote} from "../contexts/NoteContext";
 
 const userInstructions = [
   {
@@ -24,7 +25,7 @@ const userInstructions = [
 ];
 
 export default function UserInstructions() {
-  const isDark = true;
+  const { isDark } = useNote();
 
   return (
     <div className={styles.userInstructions}

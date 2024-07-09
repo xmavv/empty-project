@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
 import {Outlet, useNavigate} from "react-router-dom";
 import {useDark} from "../hooks/useDark";
+import {useNote} from "../contexts/NoteContext";
 
 const themeColor = {
   dark: "#0b0b09",
@@ -17,20 +18,26 @@ const themeColor = {
 };
 
 export default function App() {
-  const [selectedNote, setSelectedNote] = useState(null);
-  const [showAddNote, setShowAddNote] = useState(true);
-  const [notes, setNotes] = useLocalStorage("notes", []);
-  const [titleFromInput, setTitleFromInput] = useState("");
-  const [descriptionFromInput, setDescriptionFromInput] = useState("");
-  const [color, setColor] = useState("undefined");
-
   const navigate = useNavigate();
 
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   // matches conferts to true or false value
   // mozna tu tez dac max-width: 600px; i sprawdzac fajne powiazanie z cssem
 
-  const [isDark, setIsDark] = useLocalStorage("isDark", false);
+  const {isDark,
+    setIsDark,
+    selectedNote,
+    setSelectedNote,
+    showAddNote,
+    setShowAddNote,
+    notes,
+    setNotes,
+    titleFromInput,
+    setTitleFromInput,
+    descriptionFromInput,
+    setDescriptionFromInput,
+    color,
+    setColor} = useNote();
   // so take from localstorage, but if there isnt any put false
   // ITS SO EZ WITH THIS USELOCALSTORAGE
 
@@ -199,7 +206,7 @@ export default function App() {
 
       <Outlet />
 
-      <div className={styles.keyInstructions} onClick={() => navigate('/key-instructions')}>
+      <div className={styles.keyInstructions} onClick={() => navigate('/instructions')}>
         <p>
           <span>📝</span>KEY - INSTRUCTIONS
         </p>
