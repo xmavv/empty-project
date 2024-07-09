@@ -8,6 +8,7 @@ import { Toaster, toast } from "sonner";
 import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
 import {Outlet, useNavigate} from "react-router-dom";
+import {useDark} from "../hooks/useDark";
 
 const themeColor = {
   dark: "#0b0b09",
@@ -35,14 +36,7 @@ export default function App() {
 
   // pierwszy raz bierze z systemu, ale ostatecznie bierze to co sobie ustawil na tronie jak pomysli ze to drugie jest jednak lepsze
 
-  useEffect(
-    function () {
-      document.querySelector("body").style.backgroundColor = isDark
-        ? "#111110"
-        : "#f8f8f8";
-    },
-    [isDark]
-  );
+  useDark(isDark);
 
   function handleSelectedNote(note) {
     setSelectedNote(note);
