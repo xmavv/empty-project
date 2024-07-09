@@ -1,14 +1,13 @@
 import NoteList from "./NoteList";
 import NoteInput from "./NoteInput";
 import Toggle from "./Toggle";
-import Modal from "./Modal";
-import UserInstructions from "./UserInstructions";
 import styles from './App.module.css'
 
 import { Toaster, toast } from "sonner";
 
 import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
+import {Outlet, useNavigate} from "react-router-dom";
 
 const themeColor = {
   dark: "#0b0b09",
@@ -23,7 +22,8 @@ export default function App() {
   const [titleFromInput, setTitleFromInput] = useState("");
   const [descriptionFromInput, setDescriptionFromInput] = useState("");
   const [color, setColor] = useState("undefined");
-  const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
 
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   // matches conferts to true or false value
@@ -197,12 +197,15 @@ export default function App() {
           },
         }}
       />
-      {showModal && (
-        <Modal onShowModal={setShowModal}>
-          <UserInstructions />
-        </Modal>
-      )}
-      <div className={styles.keyInstructions} onClick={() => setShowModal((s) => !s)}>
+      {/*{showModal && (*/}
+      {/*  <Modal onShowModal={setShowModal}>*/}
+      {/*    <UserInstructions />*/}
+      {/*  </Modal>*/}
+      {/*)}*/}
+
+      <Outlet />
+
+      <div className={styles.keyInstructions} onClick={() => navigate('/key-instructions')}>
         <p>
           <span>📝</span>KEY - INSTRUCTIONS
         </p>

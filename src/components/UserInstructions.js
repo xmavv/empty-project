@@ -24,8 +24,12 @@ const userInstructions = [
 ];
 
 export default function UserInstructions() {
+  const isDark = true;
+
   return (
-    <div className={styles.userInstructions} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.userInstructions}
+         onClick={(e) => e.stopPropagation()}
+         data-theme={isDark ? "dark" : "light"}>
       {/* in the capturing phase it says stop capturing when clicking on div in
       modal, wiec gdy wychodzi z tego i wchodzi do modala to i tak juz jest
       stopPropagation wiec nie wykona sie tamten handler w modalu */}
