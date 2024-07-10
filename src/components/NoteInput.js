@@ -4,6 +4,7 @@ import Dot from "./Dot";
 import PlaceholderContainer from "./PlaceholderContainer";
 import { toast } from "sonner";
 import styles from './Notes.module.css'
+import {useNote} from "../contexts/NoteContext";
 
 export default function NoteInput({
   selectedNote,
@@ -17,26 +18,29 @@ export default function NoteInput({
   handleDeleteNote,
   setShowAddNote,
   color,
-  setColor,
+  // setColor,
 }) {
+  const { dispatch } = useNote();
+
   function handleNewNoteSubmit(e) {
     e.preventDefault();
+    dispatch({type: 'note/add-to-list'});
 
-    if (!titleFromInput) return;
+    // if (!titleFromInput) return;
+    //
+    // const newNote = {
+    //   id: crypto.randomUUID(),
+    //   title: titleFromInput,
+    //   description: descriptionFromInput,
+    //   color: color,
+    // };
 
-    const newNote = {
-      id: crypto.randomUUID(),
-      title: titleFromInput,
-      description: descriptionFromInput,
-      color: color,
-    };
-
-    handleAddNoteToList(newNote);
+    // handleAddNoteToList(newNote);
   }
 
   function handleDeleteNoteSubmit() {
     const toDlete = window.confirm("Are You sure to delete this note?");
-    if (toDlete) handleDeleteNote(selectedNote);
+    if (toDlete) dispatch({type: 'note/delete', payload: selectedNote});
   }
 
   // DELETE key handle to delete note
@@ -133,12 +137,13 @@ export default function NoteInput({
       if (selectedNote === null) return;
 
       const timeout = setTimeout(() => {
-        handleUpdateNote(selectedNote);
+        // handleUpdateNote(selectedNote);
+        dispatch({type: 'note/edit', payload: selectedNote})
       }, 5000);
 
       return () => clearTimeout(timeout);
     },
-    [titleFromInput, descriptionFromInput, handleUpdateNote, selectedNote]
+    [titleFromInput, descriptionFromInput, dispatch, selectedNote]
   );
 
   return (
@@ -147,7 +152,7 @@ export default function NoteInput({
         <input
           value={titleFromInput}
           onChange={(e) => {
-            setTitleFromInput(e.target.value);
+            dispatch({type: "note/title-edited", payload: e.target.value})
           }}
           placeholder={
             showAddNote
@@ -158,7 +163,7 @@ export default function NoteInput({
         ></input>
         <textarea
           value={descriptionFromInput}
-          onChange={(e) => setDescriptionFromInput(e.target.value)}
+          onChange={(e) => dispatch({type: "note/description-edited", payload: e.target.value})}
           contentEditable
           className={styles.noteInputBody}
           placeholder={showAddNote ? "Type description of your note" : ""}
@@ -166,7 +171,7 @@ export default function NoteInput({
         {(showAddNote || selectedNote) && (
           <Dot
             cssClass={`dot ${color} absolute`}
-            setColor={setColor}
+            // setColor={setColor}
             color={color}
           />
         )}

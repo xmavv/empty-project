@@ -3,6 +3,7 @@ import Button from "./Button";
 import styles from './Notes.module.css'
 
 import { Toaster, toast } from "sonner";
+import {useNote} from "../contexts/NoteContext";
 
 export default function NoteList({
   notes,
@@ -10,6 +11,8 @@ export default function NoteList({
   selectedNote,
   onAddNote,
 }) {
+    const {dispatch} = useNote();
+
   return (
     <div className={styles.notes}>
       <ul className={styles.noteList}>
@@ -23,7 +26,7 @@ export default function NoteList({
         ))}
       </ul>
       <div className={styles.noteListButtons}>
-        <Button onClick={onAddNote} position="relative">
+        <Button onClick={() => dispatch({type: 'note/new'})} position="relative">
           Add note
         </Button>
       </div>

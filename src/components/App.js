@@ -24,7 +24,8 @@ export default function App() {
   // matches conferts to true or false value
   // mozna tu tez dac max-width: 600px; i sprawdzac fajne powiazanie z cssem
 
-  const {isDark,
+  const {
+    isDark,
     setIsDark,
     selectedNote,
     setSelectedNote,
@@ -37,7 +38,10 @@ export default function App() {
     descriptionFromInput,
     setDescriptionFromInput,
     color,
-    setColor} = useNote();
+    setColor,
+
+    dispatch
+  } = useNote();
   // so take from localstorage, but if there isnt any put false
   // ITS SO EZ WITH THIS USELOCALSTORAGE
 
@@ -45,127 +49,126 @@ export default function App() {
 
   useDark(isDark);
 
-  function handleSelectedNote(note) {
-    setSelectedNote(note);
-    setShowAddNote(false);
-    setTitleFromInput(note.title);
-    setDescriptionFromInput(note.description);
-    setColor(note.color);
-  }
+  // function handleSelectedNote(note) {
+  //   setSelectedNote(note);
+  //   setShowAddNote(false);
+  //   setTitleFromInput(note.title);
+  //   setDescriptionFromInput(note.description);
+  //   setColor(note.color);
+  // }
+  //
+  // function handleAddNoteButton() {
+  //   setShowAddNote(true);
+  //   setSelectedNote(null);
+  //   setTitleFromInput("");
+  //   setDescriptionFromInput("");
+  //   setColor("undefined");
+  // }
 
-  function handleAddNoteButton() {
-    setShowAddNote(true);
-    setSelectedNote(null);
-    setTitleFromInput("");
-    setDescriptionFromInput("");
-    setColor("undefined");
-  }
+  // function handleAddNoteToList(note) {
+  //   setNotes((notes) => [...notes, note]);
+  //
+  //   setShowAddNote(false);
+  //   setSelectedNote(note);
+  //   toast.success("note succesfully added!");
+  // }
 
-  function handleAddNoteToList(note) {
-    setNotes((notes) => [...notes, note]);
+  // function handleUpdateNote(noteToUpdate) {
+  //   if (
+  //     noteToUpdate.title === titleFromInput &&
+  //     noteToUpdate.description === descriptionFromInput &&
+  //     noteToUpdate.color === color
+  //   ) {
+  //     return;
+  //   }
+  //
+  //   setNotes((notes) =>
+  //     notes.map((note) => {
+  //       if (note.id === noteToUpdate.id) {
+  //         const newNote = {
+  //           ...note,
+  //           title: titleFromInput,
+  //           description: descriptionFromInput,
+  //           color: color,
+  //         };
+  //
+  //         setSelectedNote(newNote);
+  //
+  //         return newNote;
+  //       } else {
+  //         return note;
+  //       }
+  //     })
+  //   );
+  //
+  //   toast.info("note succesfully edited!");
+  // }
 
-    setShowAddNote(false);
-    setSelectedNote(note);
-    toast.success("note succesfully added!");
-  }
+  // function handleDeleteNote(noteToDelete) {
+  //   setNotes((notes) => notes.filter((note) => note.id !== noteToDelete.id));
+  //
+  //   setSelectedNote(null);
+  //   setTitleFromInput("");
+  //   setDescriptionFromInput("");
+  //   setShowAddNote(true);
+  //   toast.info("note succesfully deleted!");
+  // }
 
-  function handleUpdateNote(noteToUpdate) {
-    if (
-      noteToUpdate.title === titleFromInput &&
-      noteToUpdate.description === descriptionFromInput &&
-      noteToUpdate.color === color
-    ) {
-      return;
-    }
+  // function handleThemeChange() {
+  //   setIsDark((s) => !s);
+  //
+  //   // unfortunately i have to do it like this cause when i started i put some style on body and now its getting a little bit awkward when i delete them
+  //   // really not good React is all about inmutablity and dom traversing and I do this omg
+  //
+  //   //ITS OK MATTHEW WITH EFFECTS U REALLY CAN DO THIS
+  //   document.querySelector("body").style.backgroundColor = isDark
+  //     ? "#f8f8f8"
+  //     : "#111110";
+  // }
 
-    setNotes((notes) =>
-      notes.map((note) => {
-        if (note.id === noteToUpdate.id) {
-          const newNote = {
-            ...note,
-            title: titleFromInput,
-            description: descriptionFromInput,
-            color: color,
-          };
+  // // INSERT key handle to add note
+  // useEffect(function () {
+  //   function keyAdd(e) {
+  //     if (e.code === "Insert") dispatch({type: 'note/new'});
+  //   }
+  //
+  //   document.addEventListener("keyup", keyAdd);
+  //
+  //   return () => document.removeEventListener("keyup", keyAdd);
+  // }, []);
 
-          setSelectedNote(newNote);
-
-          return newNote;
-        } else {
-          return note;
-        }
-      })
-    );
-
-    toast.info("note succesfully edited!");
-  }
-
-  function handleDeleteNote(noteToDelete) {
-    setNotes((notes) => notes.filter((note) => note.id !== noteToDelete.id));
-
-    setSelectedNote(null);
-    setTitleFromInput("");
-    setDescriptionFromInput("");
-    setShowAddNote(true);
-    toast.info("note succesfully deleted!");
-  }
-
-  function handleThemeChange() {
-    setIsDark((s) => !s);
-
-    // unfortunately i have to do it like this cause when i started i put some style on body and now its getting a little bit awkward when i delete them
-    // really not good React is all about inmutablity and dom traversing and I do this omg
-
-    //ITS OK MATTHEW WITH EFFECTS U REALLY CAN DO THIS
-    document.querySelector("body").style.backgroundColor = isDark
-      ? "#f8f8f8"
-      : "#111110";
-  }
-
-  // INSERT key handle to add note
-  useEffect(function () {
-    function keyAdd(e) {
-      if (e.code === "Insert") handleAddNoteButton();
-    }
-
-    document.addEventListener("keyup", keyAdd);
-
-    return () => document.removeEventListener("keyup", keyAdd);
-  }, []);
-
-  // CTRL + M key handle to change theme
-  const pressedKeys = {};
-  useEffect(function () {
-    function keyPressed(e) {
-      function keyTheme(e) {
-        pressedKeys[e.code] = true;
-
-        if (pressedKeys["ControlLeft"] === true && pressedKeys["KeyM"] === true)
-          handleThemeChange();
-      }
-      keyTheme(e);
-    }
-
-    function keyReleased(e) {
-      pressedKeys[e.code] = false;
-    }
-
-    document.addEventListener("keydown", keyPressed);
-    document.addEventListener("keyup", keyReleased);
-
-    return () => {
-      document.removeEventListener("keydown", keyPressed);
-      document.removeEventListener("keyup", keyReleased);
-    };
-  }, []);
+  // // CTRL + M key handle to change theme
+  // const pressedKeys = {};
+  // useEffect(function () {
+  //   function keyPressed(e) {
+  //     function keyTheme(e) {
+  //       pressedKeys[e.code] = true;
+  //
+  //       if (pressedKeys["ControlLeft"] === true && pressedKeys["KeyM"] === true)
+  //         // handleThemeChange();
+  //       dispatch({type: 'theme/switch'})
+  //     }
+  //     keyTheme(e);
+  //   }
+  //
+  //   function keyReleased(e) {
+  //     pressedKeys[e.code] = false;
+  //   }
+  //
+  //   document.addEventListener("keydown", keyPressed);
+  //   document.addEventListener("keyup", keyReleased);
+  //
+  //   return () => {
+  //     document.removeEventListener("keydown", keyPressed);
+  //     document.removeEventListener("keyup", keyReleased);
+  //   };
+  // }, []);
 
   return (
     <div className={styles.app} data-theme={isDark ? "dark" : "light"}>
       <div className={styles.container}>
         <NoteList
           notes={notes}
-          onSelectedNote={handleSelectedNote}
-          onAddNote={handleAddNoteButton}
           selectedNote={selectedNote}
         />
         <NoteInput
@@ -173,14 +176,14 @@ export default function App() {
           showAddNote={showAddNote}
           titleFromInput={titleFromInput}
           descriptionFromInput={descriptionFromInput}
-          setTitleFromInput={setTitleFromInput}
-          setDescriptionFromInput={setDescriptionFromInput}
-          handleAddNoteToList={handleAddNoteToList}
-          handleUpdateNote={handleUpdateNote}
-          handleDeleteNote={handleDeleteNote}
+          // setTitleFromInput={setTitleFromInput}
+          // setDescriptionFromInput={setDescriptionFromInput}
+          // handleAddNoteToList={handleAddNoteToList}
+          // handleUpdateNote={handleUpdateNote}
+          // handleDeleteNote={handleDeleteNote}
           setShowAddNote={setShowAddNote}
           color={color}
-          setColor={setColor}
+          // setColor={setColor}
         />
       </div>
       <Toaster
@@ -204,14 +207,14 @@ export default function App() {
       {/*  </Modal>*/}
       {/*)}*/}
 
-      <Outlet />
+      {/*<Outlet />*/}
 
       <div className={styles.keyInstructions} onClick={() => navigate('/instructions')}>
         <p>
           <span>📝</span>KEY - INSTRUCTIONS
         </p>
       </div>
-      <Toggle isChecked={isDark} onChange={handleThemeChange} />
+      <Toggle isChecked={isDark} onChange={() => dispatch({type: "theme/switch"})} />
     </div>
   );
 }
