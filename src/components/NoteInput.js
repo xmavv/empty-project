@@ -157,7 +157,7 @@ export default function NoteInput() {
             <Button
               position="absolute"
               direction="right"
-              onClick={() => dispatch({type: 'note/edit', payload: selectedNote})}
+              onClick={() => dispatch({type: 'note/delete', payload: selectedNote})}
             >
               DELETE
             </Button>

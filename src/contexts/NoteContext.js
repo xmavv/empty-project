@@ -238,19 +238,12 @@ function NoteProvider({children}) {
     <NoteContext.Provider
       value={{
         isDark,
-        // setIsDark,
         selectedNote,
-        // setSelectedNote,
         showAddNote,
-        // setShowAddNote,
         notes,
-        // setNotes,
         titleFromInput,
-        // setTitleFromInput,
         descriptionFromInput,
-        // setDescriptionFromInput,
         color,
-        // setColor,
 
         inputElement,
 
