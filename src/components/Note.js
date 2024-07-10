@@ -2,9 +2,9 @@ import Dot from "./Dot";
 import styles from './Notes.module.css'
 import {useNote} from "../contexts/NoteContext";
 
-export default function Note({ note, onSelectedNote, selectedNote }) {
+export default function Note({ note }) {
+  const { dispatch, selectedNote } = useNote();
   const isSelected = note.id === selectedNote?.id;
-  const { dispatch } = useNote();
 
   return (
     <li

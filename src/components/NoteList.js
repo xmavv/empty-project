@@ -5,13 +5,8 @@ import styles from './Notes.module.css'
 import { Toaster, toast } from "sonner";
 import {useNote} from "../contexts/NoteContext";
 
-export default function NoteList({
-  notes,
-  onSelectedNote,
-  selectedNote,
-  onAddNote,
-}) {
-    const {dispatch, inputElement} = useNote();
+export default function NoteList() {
+    const {dispatch, notes, inputElement} = useNote();
 
   return (
     <div className={styles.notes}>
@@ -20,8 +15,6 @@ export default function NoteList({
           <Note
             note={note}
             key={note.id}
-            onSelectedNote={onSelectedNote}
-            selectedNote={selectedNote}
           />
         ))}
       </ul>

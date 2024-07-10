@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react";
+import {useEffect} from "react";
 import Button from "./Button";
 import Dot from "./Dot";
 import PlaceholderContainer from "./PlaceholderContainer";
@@ -6,21 +6,16 @@ import { toast } from "sonner";
 import styles from './Notes.module.css'
 import {useNote} from "../contexts/NoteContext";
 
-export default function NoteInput({
-  selectedNote,
-  showAddNote,
-  titleFromInput,
-  descriptionFromInput,
-  setTitleFromInput,
-  setDescriptionFromInput,
-  handleAddNoteToList,
-  handleUpdateNote,
-  handleDeleteNote,
-  setShowAddNote,
-  color,
-  // setColor,
-}) {
-  const { dispatch, inputElement } = useNote();
+export default function NoteInput() {
+  const {
+      dispatch,
+      selectedNote,
+      showAddNote,
+      titleFromInput,
+      descriptionFromInput,
+      color,
+      inputElement
+  } = useNote();
 
   useEffect(function() {
     inputElement.current.focus();
@@ -29,17 +24,6 @@ export default function NoteInput({
   function handleNewNoteSubmit(e) {
     e.preventDefault();
     dispatch({type: 'note/add-to-list'});
-
-    // if (!titleFromInput) return;
-    //
-    // const newNote = {
-    //   id: crypto.randomUUID(),
-    //   title: titleFromInput,
-    //   description: descriptionFromInput,
-    //   color: color,
-    // };
-
-    // handleAddNoteToList(newNote);
   }
 
   function handleDeleteNoteSubmit() {
@@ -176,7 +160,6 @@ export default function NoteInput({
         {(showAddNote || selectedNote) && (
           <Dot
             cssClass={`dot ${color} absolute`}
-            // setColor={setColor}
             color={color}
           />
         )}
