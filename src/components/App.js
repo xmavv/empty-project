@@ -9,12 +9,12 @@ import {useDark} from "../hooks/useDark";
 import {useNote} from "../contexts/NoteContext";
 
 export default function App() {
-  const { isDark, dispatch } = useNote();
-  useDark(isDark);
+  const { isDark } = useNote();
+  useDark( isDark );
 
   return (
-    <div className={styles.app} data-theme={isDark ? "dark" : "light"}>
-      <div className={styles.container}>
+    <div className={ styles.app } data-theme={ isDark ? "dark" : "light" }>
+      <div className={ styles.container }>
         <NoteList />
         <NoteInput />
       </div>

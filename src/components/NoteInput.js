@@ -26,24 +26,19 @@ export default function NoteInput() {
     dispatch({type: 'note/add-to-list'});
   }
 
-  function handleDeleteNoteSubmit() {
-    const toDlete = window.confirm("Are You sure to delete this note?");
-    if (toDlete) dispatch({type: 'note/delete', payload: selectedNote});
-  }
-
   // DELETE key handle to delete note
   useEffect(
     function () {
       function keyDelete(e) {
         if (selectedNote !== null && e.code === "Delete")
-          handleDeleteNoteSubmit();
+          dispatch({type: 'note/delete', payload: selectedNote});
       }
 
       document.addEventListener("keyup", keyDelete);
 
       return () => document.removeEventListener("keyup", keyDelete);
     },
-    [selectedNote, handleDeleteNoteSubmit]
+    [selectedNote, dispatch]
   );
 
   // CTRL + S key handle download note
@@ -60,7 +55,7 @@ export default function NoteInput() {
             pressedKeys["ControlLeft"] === true &&
             pressedKeys["KeyS"] === true
           )
-            checkDelay(() => makeNoteFile(selectedNote), 5000);
+            checkDelay(() => dispatch({type: 'note/download', payload: selectedNote}), 5000);
         }
         keyDownload(e);
       }
@@ -77,29 +72,8 @@ export default function NoteInput() {
         document.removeEventListener("keyup", keyReleased);
       };
     },
-    [selectedNote]
+    [selectedNote, dispatch, pressedKeys]
   );
-
-  function makeNoteFile(noteToDownload) {
-    //text inside file
-    const textInside = noteToDownload.description;
-
-    const blob = new Blob([textInside], { type: "text/directory" });
-
-    //creating link to download a file
-    const a = document.createElement("a");
-    a.download = `${noteToDownload.title}.txt`;
-    a.href = window.URL.createObjectURL(blob);
-    a.style.display = "none";
-
-    document.body.appendChild(a);
-    a.click();
-
-    window.URL.revokeObjectURL(a.href);
-    document.body.removeChild(a);
-
-    toast.success("note succesfully downloaded!");
-  }
 
   let lastExecutionTime;
   function checkDelay(callback, delay) {
@@ -125,7 +99,6 @@ export default function NoteInput() {
       if (selectedNote === null) return;
 
       const timeout = setTimeout(() => {
-        // handleUpdateNote(selectedNote);
         dispatch({type: 'note/edit', payload: selectedNote})
       }, 5000);
 
@@ -177,14 +150,14 @@ export default function NoteInput() {
             <Button
               position="absolute"
               direction="left"
-              onClick={() => checkDelay(() => makeNoteFile(selectedNote), 5000)}
+              onClick={() => checkDelay(() => dispatch({type: 'note/download', payload: selectedNote}), 5000)}
             >
               DOWNLOAD
             </Button>
             <Button
               position="absolute"
               direction="right"
-              onClick={handleDeleteNoteSubmit}
+              onClick={() => dispatch({type: 'note/edit', payload: selectedNote})}
             >
               DELETE
             </Button>

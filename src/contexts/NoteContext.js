@@ -96,18 +96,18 @@ function reducer(state, action) {
                 return {...state};
             }
 
+            let editedNote;
+
             const editedNotes = state.notes.map((note) => {
                 if (note.id === action.payload.id) {
-                    const newNote = {
+                    editedNote = {
                         ...note,
                         title: state.titleFromInput,
                         description: state.descriptionFromInput,
                         color: state.color,
                     };
 
-                    // setSelectedNote(newNote);
-
-                    return newNote;
+                    return editedNote;
                 } else {
                     return note;
                 }
@@ -117,8 +117,11 @@ function reducer(state, action) {
 
             localStorage.setItem("notes", JSON.stringify(editedNotes))
 
-            return { ...state, notes: editedNotes }
+            return { ...state, notes: editedNotes, selectedNote: editedNote }
         case 'note/delete':
+            const toDelete = window.confirm("Are You sure to delete this note?");
+            if(!toDelete) return {...state};
+
             const deletedNotes =
                 state.notes.filter((note) => note.id !== action.payload.id);
 
@@ -134,6 +137,27 @@ function reducer(state, action) {
                 descriptionFromInput: "",
                 showAddNote: true
             }
+        case 'note/download':
+            //text inside file
+            const textInside = action.payload.description;
+
+            const blob = new Blob([textInside], { type: "text/directory" });
+
+            //creating link to download a file
+            const a = document.createElement("a");
+            a.download = `${action.payload.title}.txt`;
+            a.href = window.URL.createObjectURL(blob);
+            a.style.display = "none";
+
+            document.body.appendChild(a);
+            a.click();
+
+            window.URL.revokeObjectURL(a.href);
+            document.body.removeChild(a);
+
+            toast.success("note succesfully downloaded!");
+
+            return {...state}
         case 'theme/switch':
             document.querySelector("body").style.backgroundColor = state.isDark
                 ? "#f8f8f8"
