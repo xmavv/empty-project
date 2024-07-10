@@ -1,5 +1,7 @@
 import styles from "./UserInstructions.module.css";
 import {useNote} from "../contexts/NoteContext";
+import Button from "./Button";
+import {useNavigate} from "react-router-dom";
 
 const userInstructions = [
   {
@@ -25,6 +27,7 @@ const userInstructions = [
 ];
 
 export default function UserInstructions() {
+  const navigate = useNavigate();
   const { isDark } = useNote();
 
   return (
@@ -47,6 +50,13 @@ export default function UserInstructions() {
           ))}
         </ul>
       </div>
+      <Button
+        position={"absolute"}
+        direction={"right"}
+        onClick={() => navigate(-1)}
+      >
+        <span>&#x25c0;</span> BACK
+      </Button>
     </div>
   );
 }
