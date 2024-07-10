@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import {useEffect, useRef} from "react";
 import Button from "./Button";
 import Dot from "./Dot";
 import PlaceholderContainer from "./PlaceholderContainer";
@@ -20,7 +20,11 @@ export default function NoteInput({
   color,
   // setColor,
 }) {
-  const { dispatch } = useNote();
+  const { dispatch, inputElement } = useNote();
+
+  useEffect(function() {
+    inputElement.current.focus();
+  }, [])
 
   function handleNewNoteSubmit(e) {
     e.preventDefault();
@@ -150,6 +154,7 @@ export default function NoteInput({
     <div>
       <form className={styles.noteInput} onSubmit={(e) => e.preventDefault()}>
         <input
+            ref={inputElement}
           value={titleFromInput}
           onChange={(e) => {
             dispatch({type: "note/title-edited", payload: e.target.value})

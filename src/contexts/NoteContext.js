@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useReducer, useState} from "react";
+import {createContext, useContext, useEffect, useReducer, useRef, useState} from "react";
 import useLocalStorage from "use-local-storage";
 import {toast} from "sonner";
 
@@ -145,58 +145,74 @@ function reducer(state, action) {
 }
 
 function NoteProvider({children}) {
-    // const [notes, setNotes] = useLocalStorage("notes", []);
-    // const [isDark, setIsDark] = useLocalStorage("isDark", false);
+  // const [notes, setNotes] = useLocalStorage("notes", []);
+  // const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
-    const [{
-        notes,
-        selectedNote,
-        showAddNote,
-        titleFromInput,
-        descriptionFromInput,
-        color,
-        isDark
-    }, dispatch] = useReducer(reducer, initialState);
+  const [
+    {
+      notes,
+      selectedNote,
+      showAddNote,
+      titleFromInput,
+      descriptionFromInput,
+      color,
+      isDark,
+    },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
-    // INSERT key handle to add note
-    useEffect(function () {
-        function keyAdd(e) {
-            if (e.code === "Insert") dispatch({type: 'note/new'});
+  const inputElement = useRef(null);
+
+  // INSERT key handle to add note
+  useEffect(function () {
+    function keyAdd(e) {
+      if (e.code === "Insert") {
+        dispatch({ type: "note/new" });
+        inputElement.current.focus();
+      }
+    }
+
+    document.addEventListener("keyup", keyAdd);
+
+    return () => document.removeEventListener("keyup", keyAdd);
+  }, []);
+
+  // CTRL + M key handle to change theme
+  const pressedKeys = {};
+  useEffect(
+    function () {
+      function keyPressed(e) {
+        function keyTheme(e) {
+          pressedKeys[e.code] = true;
+
+          if (
+            pressedKeys["ControlLeft"] === true &&
+            pressedKeys["KeyM"] === true
+          )
+            // handleThemeChange();
+            dispatch({ type: "theme/switch" });
         }
+        keyTheme(e);
+      }
 
-        document.addEventListener("keyup", keyAdd);
+      function keyReleased(e) {
+        pressedKeys[e.code] = false;
+      }
 
-        return () => document.removeEventListener("keyup", keyAdd);
-    }, []);
+      document.addEventListener("keydown", keyPressed);
+      document.addEventListener("keyup", keyReleased);
 
-    // CTRL + M key handle to change theme
-    const pressedKeys = {};
-    useEffect(function () {
-        function keyPressed(e) {
-            function keyTheme(e) {
-                pressedKeys[e.code] = true;
+      return () => {
+        document.removeEventListener("keydown", keyPressed);
+        document.removeEventListener("keyup", keyReleased);
+      };
+    },
+    [dispatch, pressedKeys],
+  );
 
-                if (pressedKeys["ControlLeft"] === true && pressedKeys["KeyM"] === true)
-                    // handleThemeChange();
-                    dispatch({type: 'theme/switch'})
-            }
-            keyTheme(e);
-        }
-
-        function keyReleased(e) {
-            pressedKeys[e.code] = false;
-        }
-
-        document.addEventListener("keydown", keyPressed);
-        document.addEventListener("keyup", keyReleased);
-
-        return () => {
-            document.removeEventListener("keydown", keyPressed);
-            document.removeEventListener("keyup", keyReleased);
-        };
-    }, [dispatch, pressedKeys]);
-
-    return <NoteContext.Provider value={{
+  return (
+    <NoteContext.Provider
+      value={{
         isDark,
         // setIsDark,
         selectedNote,
@@ -212,10 +228,14 @@ function NoteProvider({children}) {
         color,
         // setColor,
 
-        dispatch
-    }}>
-        {children}
+        inputElement,
+
+        dispatch,
+      }}
+    >
+      {children}
     </NoteContext.Provider>
+  );
 }
 
 function useNote() {

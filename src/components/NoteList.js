@@ -11,7 +11,7 @@ export default function NoteList({
   selectedNote,
   onAddNote,
 }) {
-    const {dispatch} = useNote();
+    const {dispatch, inputElement} = useNote();
 
   return (
     <div className={styles.notes}>
@@ -26,7 +26,13 @@ export default function NoteList({
         ))}
       </ul>
       <div className={styles.noteListButtons}>
-        <Button onClick={() => dispatch({type: 'note/new'})} position="relative">
+        <Button
+          onClick={() => {
+            dispatch({ type: "note/new" });
+            inputElement.current.focus();
+          }}
+          position="relative"
+        >
           Add note
         </Button>
       </div>
