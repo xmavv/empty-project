@@ -1,6 +1,10 @@
 import {createContext, useContext, useEffect, useReducer, useRef, useState} from "react";
 import useLocalStorage from "use-local-storage";
 import {toast} from "sonner";
+import {useDelete} from "../hooks/useDelete";
+import {useInsert} from "../hooks/useInsert";
+import {useCtrl} from "../hooks/useCtrl";
+import {useEditNote} from "../hooks/useEditNote";
 
 const NoteContext = createContext();
 
@@ -169,9 +173,6 @@ function reducer(state, action) {
 }
 
 function NoteProvider({children}) {
-  // const [notes, setNotes] = useLocalStorage("notes", []);
-  // const [isDark, setIsDark] = useLocalStorage("isDark", false);
-
   const [
     {
       notes,
@@ -187,52 +188,38 @@ function NoteProvider({children}) {
 
   const inputElement = useRef(null);
 
-  // INSERT key handle to add note
-  useEffect(function () {
-    function keyAdd(e) {
-      if (e.code === "Insert") {
-        dispatch({ type: "note/new" });
-        inputElement.current.focus();
-      }
-    }
+  //handling diff keyboard actions
+  useInsert(inputElement, dispatch);
+  useDelete(selectedNote, dispatch);
 
-    document.addEventListener("keyup", keyAdd);
+  useCtrl(() => dispatch({ type: "theme/switch" }), "KeyM")
+  useCtrl(() => {
+      if (selectedNote === null) return;
+      //tutaj powinno byc jeszcze checkDelay
+    dispatch({ type: "note/download" , payload: selectedNote});
+  }, "KeyS");
 
-    return () => document.removeEventListener("keyup", keyAdd);
-  }, []);
+    useEditNote(selectedNote, dispatch, titleFromInput, descriptionFromInput);
 
-  // CTRL + M key handle to change theme
-  const pressedKeys = {};
-  useEffect(
-    function () {
-      function keyPressed(e) {
-        function keyTheme(e) {
-          pressedKeys[e.code] = true;
-
-          if (
-            pressedKeys["ControlLeft"] === true &&
-            pressedKeys["KeyM"] === true
-          )
-            // handleThemeChange();
-            dispatch({ type: "theme/switch" });
-        }
-        keyTheme(e);
-      }
-
-      function keyReleased(e) {
-        pressedKeys[e.code] = false;
-      }
-
-      document.addEventListener("keydown", keyPressed);
-      document.addEventListener("keyup", keyReleased);
-
-      return () => {
-        document.removeEventListener("keydown", keyPressed);
-        document.removeEventListener("keyup", keyReleased);
-      };
-    },
-    [dispatch, pressedKeys],
-  );
+    // let lastExecutionTime;
+    // function checkDelay(callback, delay) {
+    //     const currTime = new Date().getTime();
+    //         console.log(lastExecutionTime)
+    //         console.log(currTime)
+    //
+    //     if (lastExecutionTime && currTime - lastExecutionTime < delay) {
+    //
+    //         toast.warning("You can download one note per 5sec!", {
+    //             style: { width: "32rem" },
+    //         });
+    //
+    //         lastExecutionTime = currTime;
+    //         return;
+    //     }
+    //
+    //     callback();
+    //     lastExecutionTime = currTime;
+    // }
 
   return (
     <NoteContext.Provider
