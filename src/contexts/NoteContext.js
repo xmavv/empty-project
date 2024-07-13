@@ -21,6 +21,7 @@ const initialState = {
     isDark: localStorage.getItem("isDark") === null ?
         false :
         JSON.parse(localStorage.getItem("isDark")),
+    prev: 0,
 }
 
 function reducer(state, action) {
@@ -142,6 +143,16 @@ function reducer(state, action) {
                 showAddNote: true
             }
         case 'note/download':
+            //downloading note with 5sec gap for each action
+            const now = new Date().getTime();
+
+            if (now - state.prev < 5000) {
+                toast.warning("You can download one note per 5sec!", {
+                    style: { width: "32rem" },
+                });
+                return {...state}
+            }
+
             //text inside file
             const textInside = action.payload.description;
 
@@ -161,7 +172,7 @@ function reducer(state, action) {
 
             toast.success("note succesfully downloaded!");
 
-            return {...state}
+            return {...state, prev: now}
         case 'theme/switch':
             document.querySelector("body").style.backgroundColor = state.isDark
                 ? "#f8f8f8"
@@ -188,6 +199,11 @@ function NoteProvider({children}) {
 
   const inputElement = useRef(null);
 
+  //handling focus on the start of the app
+  useEffect(function() {
+    inputElement.current.focus();
+  }, [])
+
   //handling diff keyboard actions
   useInsert(inputElement, dispatch);
   useDelete(selectedNote, dispatch);
@@ -200,26 +216,6 @@ function NoteProvider({children}) {
   }, "KeyS");
 
     useEditNote(selectedNote, dispatch, titleFromInput, descriptionFromInput);
-
-    // let lastExecutionTime;
-    // function checkDelay(callback, delay) {
-    //     const currTime = new Date().getTime();
-    //         console.log(lastExecutionTime)
-    //         console.log(currTime)
-    //
-    //     if (lastExecutionTime && currTime - lastExecutionTime < delay) {
-    //
-    //         toast.warning("You can download one note per 5sec!", {
-    //             style: { width: "32rem" },
-    //         });
-    //
-    //         lastExecutionTime = currTime;
-    //         return;
-    //     }
-    //
-    //     callback();
-    //     lastExecutionTime = currTime;
-    // }
 
   return (
     <NoteContext.Provider
