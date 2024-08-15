@@ -1,0 +1,27 @@
+.app {
+    background-color: var(--bg-color);
+    color: var(--text-color-primary);
+
+    transition: background-color 250ms ease-in-out;
+}
+
+.container {
+    display: grid;
+    gap: 2rem;
+
+    grid-template-columns: max-content 1fr;
+}
+
+.keyInstructions {
+    position: absolute;
+    right: 17rem;
+    bottom: 1.5rem;
+    cursor: pointer;
+}
+
+/* 800px */
+@media only screen and (max-width: 50em) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Dot from "./Dot";
+import styles from './PlaceholderContainer.module.css'
 
 export default function PlaceholderContainerItem({ dotColor }) {
   const [dotPlaceholder, setDotPlaceholder] = useState(
@@ -18,7 +19,7 @@ export default function PlaceholderContainerItem({ dotColor }) {
       <input
         value={dotPlaceholder}
         onChange={(e) => handleDotPlaceholderChange(e)}
-        className="placeholder__item"
+        className={styles.placeholderItem}
         placeholder={`Name type for ${dotColor} dot!`}
         data-color={`${dotColor}`}
       ></input>

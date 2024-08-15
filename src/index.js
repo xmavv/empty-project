@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./Components/App";
+import Main from "./Main";
+import {NoteProvider} from "./contexts/NoteContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+      <React.StrictMode>
+          <NoteProvider>
+            <Main />
+          </NoteProvider>
+      </React.StrictMode>
 );
