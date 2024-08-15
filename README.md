@@ -27,6 +27,9 @@ However project went even further, I added a lot more stuff and features.
 ### Built with
 
 - react
+- context API
+- routing
+- reducer
 - css
 
 ### Features

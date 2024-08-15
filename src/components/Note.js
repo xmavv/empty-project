@@ -1,6 +1,7 @@
 import Dot from "./Dot";
-import styles from './Notes.module.css'
-import {useNote} from "../contexts/NoteContext";
+import styles from "./Notes.module.css";
+import { useNote } from "../contexts/NoteContext";
+import { colors } from "./Dot";
 
 export default function Note({ note }) {
   const { dispatch, selectedNote } = useNote();
@@ -8,6 +9,7 @@ export default function Note({ note }) {
 
   return (
     <li
+      style={{ color: colors[note.color] }}
       className={isSelected ? styles.noteListItemSelected : styles.noteListItem}
       onClick={() => dispatch({ type: "note/selected", payload: note })}
     >
