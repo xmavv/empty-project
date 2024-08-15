@@ -8,9 +8,9 @@
   --toggle-bg: #ffd875;
   --toggle-fg: #f28e03;
 
-  --red: rgb(232, 83, 83);
-  --blue: rgb(40, 92, 187);
-  --green: rgb(18, 142, 57);
+  --red: #e85353;
+  --blue: #285cbb;
+  --green: #128e39;
 }
 
 html {
@@ -60,6 +60,9 @@ body {
 }
 
 .heading-tertiary {
+  /* using !important, cause giving inline styles to get each note color to make it
+  as box-shadow color while hovering */
+  color: var(--text-color-primary) !important;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
