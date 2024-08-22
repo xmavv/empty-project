@@ -13,10 +13,8 @@ export default function Note({ note }) {
       className={isSelected ? styles.noteListItemSelected : styles.noteListItem}
       onClick={() => dispatch({ type: "note/selected", payload: note })}
     >
-      <h3 className="heading-tertiary">
-        <Dot cssClass={`dot ${note.color}`} />
-        {note.title}
-      </h3>
+      <Dot cssClass={`dot ${note.color}`} />
+      <h3 className="heading-tertiary">{note.title}</h3>
     </li>
   );
 }

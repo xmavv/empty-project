@@ -31,7 +31,7 @@ export default function NoteInput() {
           }}
           placeholder={
             showAddNote
-              ? "Type title of your note"
+              ? "title"
               : "Choose a note or start typing to add new note"
           }
           className={styles.noteInputTitle}
@@ -46,7 +46,7 @@ export default function NoteInput() {
           }
           contentEditable
           className={styles.noteInputBody}
-          placeholder={showAddNote ? "Type description of your note" : ""}
+          placeholder={showAddNote ? "description" : ""}
         ></textarea>
         {(showAddNote || selectedNote) && (
           <Dot cssClass={`dot ${color} absolute`} color={color} />

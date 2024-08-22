@@ -2,8 +2,10 @@
   list-style: none;
   overflow-y: scroll;
   height: 85vh;
-  padding: 2rem;
-  scrollbar-color: var(--color-primary) var(--btn-color-hover);
+  padding: 0 2rem;
+
+  scrollbar-width: thin;
+  scrollbar-color: --text-color-primary var(--btn-color-hover);
 }
 
 .noteListButtons {
@@ -13,10 +15,16 @@
 }
 
 .noteListItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
   width: 60ch;
+  border: 3px solid currentColor;
+  margin-bottom: 1rem;
 
   font-size: 1.2rem;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 2rem;
   transition: box-shadow 0.5s ease;
 
@@ -24,27 +32,35 @@
 }
 
 .noteListItem:hover {
-  -webkit-box-shadow: 14px 15px 14px -16px currentColor;
-  -moz-box-shadow: 14px 15px 14px -16px currentColor;
-  box-shadow: 5px 7px 25px -15px currentColor;
+  /* -webkit-box-shadow: 14px 15px 14px -16px currentColor; */
+  /* -moz-box-shadow: 14px 15px 14px -16px currentColor; */
+  /* box-shadow: 5px 7px 25px -15px currentColor; */
+
+  background-color: color-mix(in hsl, currentColor, var(--hover));
 }
 
 .noteListItemSelected {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
   width: 60ch;
+  border: 3px solid currentColor;
+  margin-bottom: 1rem;
 
   font-size: 1.2rem;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 2rem;
   transition: box-shadow 0.5s ease;
 
-  cursor: pointer;
+  background-color: color-mix(in hsl, currentColor, var(--hover));
 
-  -webkit-box-shadow: 14px 15px 14px -16px currentColor;
-  -moz-box-shadow: 14px 15px 14px -16px currentColor;
-  box-shadow: 5px 7px 25px -15px currentColor;
+  cursor: pointer;
 }
 
 .noteInput {
+  border: 3px solid currentColor;
+
   width: 100%;
   height: 85vh;
   background-color: var(--fg-color);
@@ -52,17 +68,22 @@
   border-radius: 2rem;
   overflow: hidden;
   padding: 1rem;
-  transition: box-shadow 0.5s ease;
+  transition: border 0s ease;
   position: relative;
 }
 
 .noteInput:hover {
-  -webkit-box-shadow: 8px 15px 52px -33px currentColor;
-  -moz-box-shadow: 8px 15px 52px -33px currentColor;
-  box-shadow: 8px 15px 52px -33px currentColor;
+  /* -webkit-box-shadow: 8px 15px 52px -33px currentColor; */
+  /* -moz-box-shadow: 8px 15px 52px -33px currentColor; */
+  /* box-shadow: 8px 15px 52px -33px currentColor; */
+
+  /* border: 3px solid currentColor; */
 }
 
 .noteInputTitle {
+  font-family: inherit;
+  font-weight: 600;
+
   font-style: italic;
   padding: 1rem;
   font-size: 2rem;
@@ -74,6 +95,8 @@
 }
 
 .noteInputBody {
+  font-family: inherit;
+
   width: 100%;
   height: 100%;
   padding: 2rem 1rem;
