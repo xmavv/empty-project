@@ -8,6 +8,8 @@
   --toggle-bg: #ffd875;
   --toggle-fg: #f28e03;
 
+  --hover: white;
+
   --red: #e85353;
   --blue: #285cbb;
   --green: #128e39;
@@ -69,6 +71,7 @@ body {
 }
 
 [data-theme="dark"] {
+  --hover: black;
   --bg-color: #111110;
   --btn-color: #151515;
   --btn-color-hover: #1f1f1f;
