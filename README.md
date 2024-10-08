@@ -1,6 +1,6 @@
 # [yourPersonalNotebook](https://xmavv-notebook.netlify.app/)
 
-![Design preview for the Time tracking dashboard coding challenge](./public/preview.png)
+![Design preview for the Time tracking dashboard coding challenge](./public/Screenshot_4.png)
 
 ## Table of contents
 
